@@ -1,24 +1,24 @@
 package com.spc.healthmaster;
 
-import com.jcraft.jsch.JSchException;
-import com.spc.healthmaster.ssh.SshManagerComposite;
+import com.spc.healthmaster.ssh.SshManagerCompositeImpl;
+import com.spc.healthmaster.ssh.dto.SshManagerDto;
 import com.spc.healthmaster.ssh.repository.SshManagerRepository;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 
-import java.io.IOException;
+import java.util.Map;
 
 @SpringBootApplication
 public class HealthMasterApplication {
 
-    public static void main(String[] args) throws JSchException, IOException, IllegalAccessException {
+    public static void main(String[] args) throws Exception {
         ApplicationContext context = SpringApplication.run(HealthMasterApplication.class, args);
         SshManagerRepository  repository = context.getBean(SshManagerRepository.class) ;
-        SshManagerComposite componet = new SshManagerComposite(repository);
+        Map<String, SshManagerDto> managerDtoMap = context.getBean("sshManager", Map.class);
+        SshManagerCompositeImpl componet = new SshManagerCompositeImpl(repository,managerDtoMap);
         componet.addServer();
-        componet.getSshManagerMap().get("1").connect();
-        System.out.println(componet.getSshManagerMap().get("1").executeCommand("ls -l"));
+       System.out.println( componet.getSshManagerMapById("1"));
     }
 
 }
