@@ -5,5 +5,8 @@ public enum TypeStrategy {
     GLASSFISH_SERVER,
     TOMCAT_SERVER,
     GLASSFISH_APP,
-    TOMCAT_APP
+    TOMCAT_APP,
+    ACTIVEMQ_APP,
+    MONGODB_APP;
+
 }

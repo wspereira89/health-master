@@ -1,24 +1,24 @@
 package com.spc.healthmaster.strategy;
 
-import com.spc.healthmaster.entity.Aplication;
+import com.spc.healthmaster.dtos.SshManagerDto;
+import com.spc.healthmaster.entity.ServerManager;
 import com.spc.healthmaster.enums.TypeStrategy;
-import com.spc.healthmaster.ssh.dto.SshManagerDto;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TomcatServerCommandStrategy implements CommandStrategy{
     @Override
-    public void start(final SshManagerDto sshManagerDto, final Aplication aplication) {
-
+    public String start(final SshManagerDto sshManagerDto, final ServerManager serverManager) {
+        return "";
     }
 
     @Override
-    public void stop(final SshManagerDto sshManagerDto, final Aplication aplication) {
-
+    public String stop(final SshManagerDto sshManagerDto, final ServerManager serverManager) {
+    return "";
     }
 
     @Override
-    public boolean status(final SshManagerDto sshManagerDto, final Aplication aplication) {
+    public boolean status(final SshManagerDto sshManagerDto, final ServerManager serverManager) {
         return true;
     }
 

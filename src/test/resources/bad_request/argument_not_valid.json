@@ -1,0 +1,11 @@
+{
+  "error":"validation_error",
+  "message":"Arguments not valid",
+  "status":400,
+  "causes":[
+    {"code":"typeStrategy","description":"Invalid type strategy"},
+    {"code":"command","description":"Invalid command action"},
+    {"code":"sshManagerId","description":"sshManagerId is required"},
+    {"code":"serverManagerId","description":"ServerManagerId is required"}
+  ],"expected":false
+}

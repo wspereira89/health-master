@@ -1,0 +1,12 @@
+{
+  "error":"deserialization_error",
+  "message":"JSON deserialization error",
+  "status":400,
+  "causes":[
+    {
+      "code":"TypeStrategy",
+      "description":"must be one of: [SPRING_BOOT_APP, GLASSFISH_SERVER, TOMCAT_SERVER, GLASSFISH_APP, TOMCAT_APP]"
+    }
+  ],
+  "expected":false
+}
