@@ -1,7 +1,7 @@
-package com.spc.healthmaster.ssh.entity;
+package com.spc.healthmaster.entity;
 
 
-import com.spc.healthmaster.ssh.dto.SshManagerDto;
+import com.spc.healthmaster.dtos.SshManagerDto;
 
 public final class Server {
     private final String serverId;

@@ -1,15 +1,20 @@
-package com.spc.healthmaster.ssh.dto;
+package com.spc.healthmaster.dtos;
 
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.JSchException;
 import com.jcraft.jsch.Session;
+import com.spc.healthmaster.exception.ApiException;
+import lombok.Data;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import static com.spc.healthmaster.factories.ApiErrorFactory.sshException;
+
+@Data
 public class SshManagerDto {
     /**
      * Constante que representa un enter.
@@ -27,26 +32,35 @@ public class SshManagerDto {
         this.password = password;
     }
 
-    public void connect() throws JSchException, IllegalAccessException {
-        if (this.session == null || !this.session.isConnected()) {
-            JSch jsch = new JSch();
+    public void connect() throws ApiException {
 
-            this.session = jsch.getSession(this.user, host, 2024);
+        if (this.session == null || !this.session.isConnected()) {
+            final JSch jsch = new JSch();
+
+            try {
+                this.session = jsch.getSession(this.user, host, 2024);
+
             this.session.setPassword(password);
 
             // Parametro para no validar key de conexion.
             this.session.setConfig("StrictHostKeyChecking", "no");
+            // Agregar el SessionListener
 
             this.session.connect();
-        } else {
-            throw new IllegalAccessException("Sesion SSH ya iniciada.");
+            } catch (final JSchException e) {
+                throw sshException(user, host).withCause("session", e.getMessage()).toException();
+            }
         }
     }
 
-    public void disconnect() {
+   public void disconnect() {
         if (session != null) {
             session.disconnect();
         }
+    }
+
+    private boolean isConnected() {
+        return this.session != null && !this.session.isConnected();
     }
 
     /**
@@ -65,23 +79,24 @@ public class SshManagerDto {
      *                                luego de la ejecución del comando
      *                                SSH.
      */
-    public final String executeCommand(String command)
-            throws IllegalAccessException, JSchException, IOException {
-        if (this.session != null && this.session.isConnected()) {
+    public final String executeCommand(String command) throws ApiException {
 
-            // Abrimos un canal SSH. Es como abrir una consola.
-            ChannelExec channelExec = (ChannelExec) this.session.
-                    openChannel("exec");
+        if (!this.isConnected()) {
+            this.connect();
+        }
 
-            InputStream in = channelExec.getInputStream();
+        ChannelExec channelExec = null;
+        try {
+            channelExec = (ChannelExec) this.session.openChannel("exec");
+            final InputStream in = channelExec.getInputStream();
 
             // Ejecutamos el comando.
             channelExec.setCommand(command);
             channelExec.connect();
 
             // Obtenemos el texto impreso en la consola.
-            BufferedReader reader = new BufferedReader(new InputStreamReader(in));
-            StringBuilder builder = new StringBuilder();
+            final BufferedReader reader = new BufferedReader(new InputStreamReader(in));
+            final StringBuilder builder = new StringBuilder();
             String linea;
 
             while ((linea = reader.readLine()) != null) {
@@ -94,10 +109,8 @@ public class SshManagerDto {
 
             // Retornamos el texto impreso en la consola.
             return builder.toString();
-        } else {
-            throw new IllegalAccessException("No existe sesion SSH iniciada.");
+        } catch (final JSchException | IOException e) {
+            throw sshException(user, host).withCause("exec", e.getMessage()).toException();
         }
     }
-
-
 }

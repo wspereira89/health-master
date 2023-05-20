@@ -1,6 +1,6 @@
 package com.spc.healthmaster.enums;
 
-public enum CommandAction {
+public enum Actions {
     START,
     STOP,
     STATUS;

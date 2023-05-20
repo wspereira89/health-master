@@ -1,13 +1,11 @@
 package com.spc.healthmaster.strategy;
 
 
-import com.jcraft.jsch.JSchException;
+import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.entity.Aplication;
 import com.spc.healthmaster.enums.TypeStrategy;
-import com.spc.healthmaster.ssh.dto.SshManagerDto;
+import com.spc.healthmaster.exception.ApiException;
 import org.springframework.stereotype.Component;
-
-import java.io.IOException;
 
 @Component
 public class SpringBootCommandStrategy implements CommandStrategy {
@@ -16,13 +14,15 @@ public class SpringBootCommandStrategy implements CommandStrategy {
     private static final String COMMAND_STATUS = "";
 
     @Override
-    public void start(final SshManagerDto sshManagerDto, final Aplication aplication) throws JSchException, IOException, IllegalAccessException {
+    public String start(final SshManagerDto sshManagerDto, final Aplication aplication) throws ApiException {
         sshManagerDto.executeCommand(COMMAND_START);
+        return "";
     }
 
     @Override
-    public void stop(final SshManagerDto sshManagerDto, final Aplication aplication) throws JSchException, IOException, IllegalAccessException {
+    public String stop(final SshManagerDto sshManagerDto, final Aplication aplication) throws ApiException {
         sshManagerDto.executeCommand(COMMAND_STOP);
+        return "";
     }
 
     @Override

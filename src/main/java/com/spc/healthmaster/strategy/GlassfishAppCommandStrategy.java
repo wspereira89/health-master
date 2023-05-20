@@ -1,8 +1,8 @@
 package com.spc.healthmaster.strategy;
 
+import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.entity.Aplication;
 import com.spc.healthmaster.enums.TypeStrategy;
-import com.spc.healthmaster.ssh.dto.SshManagerDto;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,13 +18,13 @@ public class GlassfishAppCommandStrategy implements CommandStrategy{
     private String status ="asadmin --user=admin --passwordfile=/opt/glassfish3/glassfish/domains/domain1/config/passwords list-applications --type web | grep myapp";
 
     @Override
-    public void start(final SshManagerDto sshManagerDto, final Aplication aplication) {
-
+    public String start(final SshManagerDto sshManagerDto, final Aplication aplication) {
+        return "";
     }
 
     @Override
-    public void stop(final SshManagerDto sshManagerDto, final Aplication aplication) {
-
+    public String stop(final SshManagerDto sshManagerDto, final Aplication aplication) {
+        return "";
     }
 
     @Override

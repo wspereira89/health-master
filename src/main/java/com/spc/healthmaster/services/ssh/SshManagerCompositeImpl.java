@@ -1,22 +1,24 @@
-package com.spc.healthmaster.ssh;
+package com.spc.healthmaster.services.ssh;
 
-import com.spc.healthmaster.ssh.dto.SshManagerDto;
-import com.spc.healthmaster.ssh.entity.Server;
-import com.spc.healthmaster.ssh.repository.SshManagerRepository;
-import org.springframework.boot.CommandLineRunner;
+import com.spc.healthmaster.dtos.SshManagerDto;
+import com.spc.healthmaster.entity.Server;
+import com.spc.healthmaster.exception.ApiException;
+import com.spc.healthmaster.repository.SshManagerRepository;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static com.spc.healthmaster.factories.ApiErrorFactory.notFoundConnectionSsh;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_SINGLETON;
 
 @Component
 @Scope(value = SCOPE_SINGLETON)
-public class SshManagerCompositeImpl implements SshManagerComposite{
+public class SshManagerCompositeImpl implements SshManagerComposite {
 
     private Map<String, SshManagerDto> sshManagerMap;
 
@@ -29,14 +31,16 @@ public class SshManagerCompositeImpl implements SshManagerComposite{
      this.sshManagerMap = sshManagerDto;
     }
 
-
-    public void addServer() {
+    @PostConstruct
+    public void init() {
         final List<Server> servers = sshManagerRepository.getAllServer();
         this.sshManagerMap = servers.stream().collect(Collectors.toMap(Server::getServerId, Server::toSshManager));
     }
 
-    public SshManagerDto getSshManagerMapById(final String serverId) throws Exception {
-        return Optional.ofNullable(sshManagerMap.get(serverId)).orElseThrow(()-> new Exception("not found"));
+    public SshManagerDto getSshManagerMapById(final String serverId) throws ApiException {
+        return Optional
+                .ofNullable(sshManagerMap.get(serverId))
+                .orElseThrow(()-> notFoundConnectionSsh(serverId).toException());
     }
 
 }

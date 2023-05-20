@@ -10,6 +10,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -24,6 +27,9 @@
   </component>
   <component name="GoLibraries">
     <option name="indexEntireGoPath" value="true" />
+  </component>
+  <component name="KotlinCodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -52,13 +58,21 @@
     "RunOnceActivity.go.migrated.go.modules.settings": "true",
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "C:/Users/MELISSA MIRANDA}/Downloads/health-master",
+    "last_opened_file_path": "C:/Users/MELISSA MIRANDA}/OneDrive/Documentos/health-master/src/test/resources/bad_request",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
+    "settings.editor.selected.configurable": "editor.preferences.completion"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\MELISSA MIRANDA}\OneDrive\Documentos\health-master\src\test\resources\bad_request" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.spc.healthmaster.command" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.HealthMasterApplication">
     <configuration name="HealthMasterApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.HealthMasterApplication" />
@@ -73,6 +87,70 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SshManagerDtoTest.doNotingWhenCallConnectIfSessionConnect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="health-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spc.healthmaster.dtos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.dtos" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.dtos.SshManagerDtoTest" />
+      <option name="METHOD_NAME" value="doNotingWhenCallConnectIfSessionConnect" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SshManagerDtoTest.givenSessionWhenCallConnectThenReturnApiException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="health-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spc.healthmaster.dtos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.dtos" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.dtos.SshManagerDtoTest" />
+      <option name="METHOD_NAME" value="givenSessionWhenCallConnectThenReturnApiException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SshManagerDtoTest.givenSessionwhenCallConnectThenReturnApiException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="health-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spc.healthmaster.dtos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.dtos" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.dtos.SshManagerDtoTest" />
+      <option name="METHOD_NAME" value="givenSessionwhenCallConnectThenReturnApiException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SshManagerDtoTest.testConnect" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="health-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spc.healthmaster.dtos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.dtos" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.dtos.SshManagerDtoTest" />
+      <option name="METHOD_NAME" value="testConnect" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HealthMasterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="health-master" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.spc.healthmaster.HealthMasterApplication" />
@@ -83,6 +161,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.HealthMasterApplication" />
+        <item itemvalue="JUnit.SshManagerDtoTest.doNotingWhenCallConnectIfSessionConnect" />
+        <item itemvalue="JUnit.SshManagerDtoTest.givenSessionWhenCallConnectThenReturnApiException" />
+        <item itemvalue="JUnit.SshManagerDtoTest.testConnect" />
+        <item itemvalue="JUnit.SshManagerDtoTest.givenSessionwhenCallConnectThenReturnApiException" />
       </list>
     </recent_temporary>
   </component>
@@ -120,14 +202,97 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/HealthMasterApplication.java</url>
-          <line>20</line>
-          <option name="timeStamp" value="3" />
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/validator/EnumValidatorTest.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/HealthMasterApplication.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/validator/EnumValidatorTest.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandRestController.java</url>
+          <line>25</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/ssh/dto/MySessionListener.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/CommandServiceTest.java</url>
+          <line>51</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/CommandServiceTest.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/commands/CommandServiceImpl.java</url>
+          <line>45</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/CommandServiceTest.java</url>
+          <line>68</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/CommandServiceTest.java</url>
+          <line>103</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/commands/CommandServiceImpl.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/dtos/SshManagerDtoTest.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/dtos/SshManagerDtoTest.java</url>
+          <line>75</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerCompositeImpl.java</url>
+          <line>36</line>
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/configuration/Config.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="37" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandRestController.java</url>
+          <line>24</line>
+          <properties class="com.spc.healthmaster.controller.CommandRestController" method="executeCommand">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-field">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerCompositeImpl.java</url>
+          <line>22</line>
+          <properties field="sshManagerMap" class="com.spc.healthmaster.services.ssh.SshManagerCompositeImpl" />
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

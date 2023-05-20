@@ -1,0 +1,11 @@
+{
+  "error":"validation_error",
+  "message":"Arguments not valid",
+  "status":400,
+  "causes":[
+    {"code":"typeStrategy","description":"Invalid type strategy"},
+    {"code":"command","description":"Invalid command action"},
+    {"code":"serverId","description":"Server ID is required"},
+    {"code":"application","description":"Application is required"}
+  ],"expected":false
+}
