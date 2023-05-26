@@ -1,6 +1,9 @@
 package com.spc.healthmaster.dtos;
+
 import com.google.common.collect.ImmutableList;
 import com.spc.healthmaster.exception.ApiException;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.ToString;
 
@@ -10,12 +13,20 @@ import java.util.Objects;
 
 @Getter
 @ToString
+@ApiModel(description = "Api Error")
 public class ApiErrorDto {
-
+    @ApiModelProperty(name = "error", value = "validation_error", example = "validation_error")
     private String error;
+
+    @ApiModelProperty(name = "message", value = "Arguments not valid", example = "Arguments not valid")
     private String message;
+
+    @ApiModelProperty(name = "status", value = "400", example = "400")
     private int status;
+    @ApiModelProperty(value = "Descripción de la lista de DTOs")
+
     private final List<CauseDto> causes;
+    @ApiModelProperty(name = "expected", value = "Error message", example = "true")
     private boolean expected;
 
     /* default */ ApiErrorDto() {

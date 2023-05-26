@@ -18,16 +18,19 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.spc.healthmaster.controller")) // Reemplaza "com.example.yourpackage" con el paquete base de tu aplicación
+                .apis(RequestHandlerSelectors.basePackage("com.spc.healthmaster")) // Reemplaza "com.example.yourpackage" con el paquete base de tu aplicación
                 .paths(PathSelectors.any())
                 .build()
-                .apiInfo(apiInfo());
+                .apiInfo(apiInfo())
+                .useDefaultResponseMessages(false)
+                ;
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("API Documentation")
-                .description("Documentation for your API")
+                .title("API Documentation Health Master Monitor")
+                .description("Mediante la API proporcionada, puedes realizar diversas acciones en tus aplicaciones de manera programática. " +
+                        "Esto incluye iniciar y detener aplicaciones o grupos de aplicaciones según sea necesario, así como obtener el estado actual de cada una de ellas")
                 .version("1.0.0")
                 .build();
     }
