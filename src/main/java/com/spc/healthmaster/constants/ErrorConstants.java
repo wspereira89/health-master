@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class ErrorConstants {
 
-    public static final String ERROR ="{\n" +
+    public static final String ERROR_400_ARGUMENTS_NOT_VALID = "{\n" +
             "  \"error\":\"validation_error\",\n" +
             "  \"message\":\"Arguments not valid\",\n" +
             "  \"status\":400,\n" +
@@ -17,4 +17,32 @@ public final class ErrorConstants {
             "  ],\"expected\":false\n" +
             "}";
 
+    public static final String ERROR_400_DESERIALIZATION_COMMAND = "{\n" +
+            "  \"error\":\"deserialization_error\",\n" +
+            "  \"message\":\"JSON deserialization error\",\n" +
+            "  \"status\":400,\n" +
+            "  \"causes\":[{\"code\":\"Action\",\"description\":\"must be one of: [START, STOP, STATUS]\"}],\n" +
+            "  \"expected\":false\n" +
+            "}";
+
+    public static final String ERROR_400_DESERIALIZATION_TYPE_STRATEGY = "{\n" +
+            "  \"error\":\"deserialization_error\",\n" +
+            "  \"message\":\"JSON deserialization error\",\n" +
+            "  \"status\":400,\n" +
+            "  \"causes\":[\n" +
+            "    {\n" +
+            "      \"code\":\"TypeStrategy\",\n" +
+            "      \"description\":\"must be one of: [SPRING_BOOT_APP, GLASSFISH_SERVER, TOMCAT_SERVER, GLASSFISH_APP, TOMCAT_APP, ACTIVEMQ_APP, MONGODB_APP]\"\n" +
+            "    }\n" +
+            "  ],\n" +
+            "  \"expected\":false\n" +
+            "}\n";
+
+    public static final String ERROR_400_DESERIALIZATION_UNKNOWN = "{\n" +
+            "  \"error\":\"deserialization_error\",\n" +
+            "  \"message\":\"JSON deserialization error\",\n" +
+            "  \"status\":400,\n" +
+            "  \"causes\":[{\"code\":\"unknown\",\"description\":\"must be one of\"}],\n" +
+            "  \"expected\":false\n" +
+            "}";
 }

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfe3893f-5276-4a6a-8881-3701e5ed86d4" name="Changes" comment=" commit test y controller">
-      <change afterPath="$PROJECT_DIR$/bdTest.mv.db" afterDir="false" />
+    <list default="true" id="dfe3893f-5276-4a6a-8881-3701e5ed86d4" name="Changes" comment="dimplementacion de swagger con open Api">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bdTest.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/bdTest.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/configuration/SwaggerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/configuration/SwaggerConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/ErrorConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/ErrorConstants.java" afterDir="false" />
@@ -14,7 +15,6 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/ApiErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/ApiErrorDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/CauseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/CauseDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/enums/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/enums/Status.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +195,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685112338358</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="dimplementacion de swagger">
+      <created>1685133540305</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1685133540305</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -215,7 +222,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Agregando MessageService envio socket" />
     <MESSAGE value=" commit test y controller" />
-    <option name="LAST_COMMIT_MESSAGE" value=" commit test y controller" />
+    <MESSAGE value="dimplementacion de swagger" />
+    <MESSAGE value="dimplementacion de swagger con open Api" />
+    <option name="LAST_COMMIT_MESSAGE" value="dimplementacion de swagger con open Api" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="VgoProject">
@@ -237,7 +246,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandRestController.java</url>
-          <line>46</line>
+          <line>54</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -302,7 +311,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandRestController.java</url>
-          <line>45</line>
+          <line>53</line>
           <properties class="com.spc.healthmaster.controller.CommandRestController" method="executeCommand">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
