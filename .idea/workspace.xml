@@ -5,77 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dfe3893f-5276-4a6a-8881-3701e5ed86d4" name="Changes" comment=" commit test y controller">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/configuration/SwaggerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/configuration/WebSocketConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/NotificationDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/SSHManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/ServerManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/enums/Status.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MaintenanceEventListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/ErrorConstants.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MyCustomEvent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MyEventListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MyEventPublisher.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/SSHManagerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/ServerManagerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/websoket/MessageService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/websoket/MessageServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/ActivemQCommandStrategy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/MongoDBCommandStrategy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/HealthMasterApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/HealthMasterApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/CommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/CommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StartCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StartCommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StatusCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StatusCommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StopCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StopCommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/configuration/Config.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/configuration/Config.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/ErrorConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/MaintenanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/MaintenanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/ServerController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/ApiError.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/ApiErrorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/Cause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/CauseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/CommandRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/CommandRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/MaintenanceRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/MaintenanceRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/ServerDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/SshManagerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/SshManagerDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/Aplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/Glassfish.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/Server.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/enums/Actions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/enums/Action.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/enums/TypeStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/enums/TypeStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MyCustomEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MaintenanceEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MyEventListener.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MyEventPublisher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MaintenanceEventPublisher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/ApiException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/ApiException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/DefaultExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/DefaultExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/factories/ApiErrorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/factories/ApiErrorFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/enums/CommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/enums/CommandAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/ApplicationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/ApplicationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/GlassfishRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/MemoryApplicationReposityImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/MemoryGlassfishRepositoryImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/SshManagerRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/SshManagerRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ServerService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ServerServiceImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/commands/CommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/commands/CommandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/commands/CommandServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/commands/CommandServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/maintenance/MaintenanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/maintenance/MaintenanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/maintenance/MaintenanceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/maintenance/MaintenanceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerComposite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerComposite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerCompositeImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerCompositeImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/CommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/CommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/GlassfishAppCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/GlassfishAppCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/GlassfishServerCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/GlassfishServerCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/SpringBootCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/SpringBootCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/TomcatAppCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/TomcatAppCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/TomcatServerCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/TomcatServerCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/HealthMasterApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/HealthMasterServerManagerTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/CommandControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/CommandControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/CommandServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/CommandServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/bad_request/argument_not_valid.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/bad_request/argument_not_valid.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/bad_request/deserialization_error_command_action_enum.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/bad_request/deserialization_error_command_action_enum.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -148,7 +86,7 @@
       <recent name="com.spc.healthmaster.command" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.HealthMasterApplication">
+  <component name="RunManager" selected="JUnit.healthmaster in health-master">
     <configuration name="HealthMasterApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.HealthMasterApplication" />
       <module name="health-master" />
@@ -158,14 +96,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="All in health-master (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="health-master" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -201,6 +131,14 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="healthmaster in health-master" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="health-master" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/test/java/com/spc/healthmaster" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HealthMasterApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="health-master" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.spc.healthmaster.HealthMasterApplication" />
@@ -210,11 +148,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.healthmaster in health-master" />
         <item itemvalue="Application.HealthMasterApplication" />
         <item itemvalue="JUnit.CommandControllerTest" />
         <item itemvalue="JUnit.All in health-master (3)" />
         <item itemvalue="JUnit.All in health-master (2)" />
-        <item itemvalue="JUnit.All in health-master (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -228,6 +166,28 @@
       <updated>1683757302227</updated>
       <workItem from="1683757303593" duration="977000" />
     </task>
+    <task id="LOCAL-00001" summary=" commit test y controller">
+      <created>1685110956297</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1685110956297</updated>
+    </task>
+    <task id="LOCAL-00002" summary=" commit test y controller">
+      <created>1685111023969</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1685111023969</updated>
+    </task>
+    <task id="LOCAL-00003" summary=" commit test y controller">
+      <created>1685111070541</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685111070541</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +208,7 @@
     <MESSAGE value="Agregando MessageService envio socket" />
     <MESSAGE value=" commit test y controller" />
     <option name="LAST_COMMIT_MESSAGE" value=" commit test y controller" />
+    <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="VgoProject">
     <integration-enabled>false</integration-enabled>
@@ -280,14 +241,6 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/ssh/dto/MySessionListener.java</url>
           <line>6</line>
           <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/CommandServiceTest.java</url>
-          <line>53</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/CommandServiceTest.java</url>
@@ -342,7 +295,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandRestController.java</url>
           <line>29</line>
-          <properties class="com.spc.healthmaster.controller.CommandRestController" method="executeCommand">
+          <properties class="com.spc.healthmaster.controller.CommandRestController">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>

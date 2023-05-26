@@ -5,7 +5,7 @@
   "causes":[
     {
       "code":"TypeStrategy",
-      "description":"must be one of: [SPRING_BOOT_APP, GLASSFISH_SERVER, TOMCAT_SERVER, GLASSFISH_APP, TOMCAT_APP]"
+      "description":"must be one of: [SPRING_BOOT_APP, GLASSFISH_SERVER, TOMCAT_SERVER, GLASSFISH_APP, TOMCAT_APP, ACTIVEMQ_APP, MONGODB_APP]"
     }
   ],
   "expected":false

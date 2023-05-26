@@ -1,10 +1,10 @@
 package com.spc.healthmaster.repository;
 
-import com.spc.healthmaster.entity.SSHManager;
+import com.spc.healthmaster.entity.Application;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ApplicationRepository extends JpaRepository<SSHManager, Long> {
+public interface ApplicationRepository extends JpaRepository<Application, Long> {
 
 }
