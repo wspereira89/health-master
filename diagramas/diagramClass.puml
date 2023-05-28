@@ -1,0 +1,48 @@
+@startuml
+
+
+
+CommandRestController --> CommandService
+CommandServiceImpl --> CommandAction
+CommandAction --> CommandStrategy
+
+
+class CommandRestController {
+  - commandService: CommandService
+  + executeCommand(commandRequestDto)
+}
+
+interface CommandService {
+  + executeCommand(commandRequestDto)
+}
+class CommandServiceImpl  implements CommandService {
+  - commandActions: Map<Action, CommandAction>
+  - sshManagerComposite: SshManagerComposite
+  - serverManagerRepository: ServerManagerRepository
+  - commandStrategies: List<CommandStrategy>
+  - messageService: MessageService
+ + executeCommand(commandRequestDto)
+}
+
+interface CommandAction {
+    Status execute(CommandStrategy commandStrategy, SshManagerDto manager, ServerManager serverManager) throws ApiException;
+}
+class StartCommandAction implements CommandAction {
+}
+class StatusCommandAction implements CommandAction {}
+class StopCommandAction implements CommandAction {}
+
+interface CommandStrategy {
+
+    String start(SshManagerDto sshManagerDto,  ServerManager serverManager) throws  ApiException;
+    String stop(SshManagerDto sshManagerDto, ServerManager serverManager) throws  ApiException;
+    boolean status(SshManagerDto sshManagerDto, ServerManager serverManager) throws ApiException;
+
+    TypeStrategy getType();
+}
+
+class SpringBootCommandStrategy implements CommandStrategy {}
+class TomcatAppCommandStrategy implements CommandStrategy {}
+class TomcatServerCommandStrategy implements CommandStrategy {}
+class GlassfishServerCommandStrategy implements CommandStrategy {}
+@enduml

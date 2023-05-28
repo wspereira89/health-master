@@ -17,5 +17,9 @@ Puedes encontrar la documentación completa de la API en el siguiente enlace:
 - [Swagger API Documentation](http://localhost:8080/swagger-ui/index.html)  
 Nota: Si no se muestra la documentación es por que se encuentra abajo la aplicacion.
 La documentación incluye detalles sobre los endpoints, los modelos de datos, los parámetros y las respuestas esperadas.
-
+### Diagramas
+- diagrama de clase
+![diagramClasss.png](diagramas%2FdiagramClasss.png)
+- diagrama de flujo
+![diagramFlujo.png](diagramas%2FdiagramFlujo.png)
 ### Ultimas actualizaciones

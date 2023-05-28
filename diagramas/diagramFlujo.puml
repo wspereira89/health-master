@@ -1,0 +1,44 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:llega peticion Post command;
+if(busca si existe un serverManager con commandRequestDto.getServerManagerId())) then (no)
+    :lanza una exception que la aplicacion no fue encontrada;
+    stop
+endif
+if(busca si existe un servidor con el host enviado)) then (no)
+    :lanza una exception que el servidor no se encontro;
+    stop
+endif
+if(Busca la estrategia basado con el parametro enviado) then (no)
+    :Lanza una exception que no econtro estrategia para procesar la peticion;
+    stop
+endif
+if(Busca el actionCommand basado con el parametro enviado) then (no)
+    :Lanza una exception que no econtro un comando valido para procesar la peticion;
+    stop
+endif
+if (command es START) then (SI)
+    if(aplicacion se encuentra inicializada) then(Si)
+        :lanza exception de que la aplicacion se encuentra inicializada;
+         stop
+    else (no)
+        :ejecuta estrategia START;
+    endif
+else (no)
+  if (command es STOP) then (SI)
+    if(aplicacion se encuentra inicializada) then(no)
+          :lanza exception de que la aplicacion no se encuentra inicializada;
+           stop
+      else (si)
+          :ejecuta estrategia STOP;
+      endif
+  else (no)
+    :ejecuta estrategia STATUS;
+  endif
+endif
+:envia mensaje a websocket;
+stop
+
+@enduml
