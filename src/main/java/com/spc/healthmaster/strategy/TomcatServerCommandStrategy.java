@@ -6,7 +6,7 @@ import com.spc.healthmaster.enums.TypeStrategy;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TomcatServerCommandStrategy implements CommandStrategy{
+public class TomcatServerCommandStrategy implements CommandStrategy {
     @Override
     public String start(final SshManagerDto sshManagerDto, final ServerManager serverManager) {
         return "";

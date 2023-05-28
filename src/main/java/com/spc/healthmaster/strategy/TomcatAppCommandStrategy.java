@@ -6,7 +6,7 @@ import com.spc.healthmaster.enums.TypeStrategy;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TomcatAppCommandStrategy implements CommandStrategy{
+public class TomcatAppCommandStrategy implements CommandStrategy {
 
 
     @Override

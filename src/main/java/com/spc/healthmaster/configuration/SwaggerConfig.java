@@ -33,7 +33,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public SwaggerUiConfigProperties swaggerUiConfigProperties() {
         SwaggerUiConfigProperties properties = new SwaggerUiConfigProperties();
         properties.setDefaultModelRendering("example");
-        properties.setSupportedSubmitMethods(disabledBtn ? Arrays.asList(new String[]{}) : null);
+        properties.setSupportedSubmitMethods(disabledBtn ? Arrays.asList() : null);
         return properties;
     }
 

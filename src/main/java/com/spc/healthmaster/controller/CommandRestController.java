@@ -32,12 +32,6 @@ public class CommandRestController {
     }
 
     @PostMapping()
-    /*@ApiResponses(value = {
-            @ApiResponse(code = 200, message = "success", response = Status.class),
-            @ApiResponse(code = 400  , message = "Bad request", response = ApiErrorDto.class),
-            @ApiResponse(code = 500  , message = "Bad request", response = ApiErrorDto.class),
-
-    })*/
     @Operation(summary = "Ejecutar comando sobre aplicación")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success"),
