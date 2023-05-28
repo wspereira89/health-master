@@ -1,16 +1,10 @@
 package com.spc.healthmaster.dtos;
 
-import com.jcraft.jsch.ChannelExec;
-import com.jcraft.jsch.JSch;
-import com.jcraft.jsch.JSchException;
-import com.jcraft.jsch.Session;
+import com.jcraft.jsch.*;
 import com.spc.healthmaster.exception.ApiException;
 import lombok.Data;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 
 import static com.spc.healthmaster.factories.ApiErrorFactory.sshException;
 
@@ -113,6 +107,30 @@ public class SshManagerDto {
             return builder.toString();
         } catch (final JSchException | IOException e) {
             throw sshException(user, host).withCause("exec", e.getMessage()).toException();
+        }
+    }
+
+    public final byte[] downloadFile(String filePath) throws ApiException {
+        if (!this.isConnected()) {
+            this.connect();
+        }
+
+        ChannelSftp channelSftp = null;
+        try {
+            channelSftp = (ChannelSftp) this.session.openChannel("sftp");
+            channelSftp.connect();
+
+            // Descargar el archivo del servidor SSH y leer los bytes
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            channelSftp.get(filePath, outputStream);
+            byte[] fileBytes = outputStream.toByteArray();
+
+            // Cerrar el canal SFTP
+            channelSftp.disconnect();
+
+            return fileBytes;
+        } catch (JSchException | SftpException e) {
+            throw sshException(user, host).withCause("download", e.getMessage()).toException();
         }
     }
 }

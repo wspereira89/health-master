@@ -2,9 +2,7 @@ package com.spc.healthmaster.services.commands;
 
 import com.google.common.collect.ImmutableMap;
 import com.spc.healthmaster.command.CommandAction;
-import com.spc.healthmaster.dtos.CommandRequestDto;
-import com.spc.healthmaster.dtos.NotificationDto;
-import com.spc.healthmaster.dtos.SshManagerDto;
+import com.spc.healthmaster.dtos.*;
 import com.spc.healthmaster.entity.ServerManager;
 import com.spc.healthmaster.enums.Action;
 import com.spc.healthmaster.enums.Status;
@@ -53,7 +51,7 @@ public class CommandServiceImpl implements CommandService {
     }
 
     @Override
-    public Status executeCommand(final CommandRequestDto commandRequestDto) throws ApiException {
+    public ResponseDto executeCommand(final CommandRequestDto commandRequestDto) throws ApiException {
         final ServerManager serverManager = serverManagerRepository.findById(commandRequestDto.getServerManagerId())
                 .orElseThrow(()-> notFoundApplication(commandRequestDto.getServerManagerId()).toException());
 
@@ -73,9 +71,18 @@ public class CommandServiceImpl implements CommandService {
                 .applicationId(serverManager.getId())
                 .serverName(manager.getServerName());
         try {
-             final Status response= commandAction.execute(command, manager, serverManager);
-             notificationDto.status(response);
-             this.messageService.sendMessageToTopic(notificationDto.build());
+            final WrapperExecute wrapper = WrapperExecute.builder()
+                    .pathFile(commandRequestDto.getPathFile())
+                    .sshManagerDto(manager)
+                    .serverManager(serverManager)
+                    .commandStrategy(command)
+                    .build();
+             final ResponseDto response = commandAction.execute(wrapper);
+             response.getStatus()
+                     .ifPresent(status -> {
+                        notificationDto.status(status);
+                        this.messageService.sendMessageToTopic(notificationDto.build());
+                     });
              return response;
         } catch (final ApiException apiException) {
             notificationDto.status(statusMap.getOrDefault(apiException.getError(), Status.UNDEFINED));

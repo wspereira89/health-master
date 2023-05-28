@@ -26,7 +26,6 @@ import static com.spc.healthmaster.factories.ApiErrorFactory.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.openMocks;
@@ -113,7 +112,7 @@ public class CommandServiceTest {
         when(commandStrategies.stream()).thenReturn(Stream.of(spring));
         final CommandAction commandAction = mock(CommandAction.class);
         when(commandActions.get(any())).thenReturn(commandAction);
-        when(commandAction.execute(eq(spring),eq(sshManagerDto),eq(serverManager)))
+        when(commandAction.execute(any()))
                 .thenThrow(ALREADY_INITIALIZED.toException());
         final ApiException thrownException = assertThrows(
                 ApiException.class , ()-> commandService.executeCommand(commandRequestDto)
@@ -135,7 +134,7 @@ public class CommandServiceTest {
         when(commandStrategies.stream()).thenReturn(Stream.of(spring));
         final CommandAction commandAction = mock(CommandAction.class);
         when(commandActions.get(any())).thenReturn(commandAction);
-        when(commandAction.execute(eq(spring),eq(sshManagerDto),eq(serverManager)))
+        when(commandAction.execute(any()))
                 .thenThrow(ALREADY_STOPPED.toException());
         final ApiException thrownException = assertThrows(
                 ApiException.class , ()-> commandService.executeCommand(commandRequestDto)
@@ -158,7 +157,7 @@ public class CommandServiceTest {
         when(commandStrategies.stream()).thenReturn(Stream.of(spring));
         final CommandAction commandAction = mock(CommandAction.class);
         when(commandActions.get(any())).thenReturn(commandAction);
-        when(commandAction.execute(eq(spring),eq(sshManagerDto),eq(serverManager)))
+        when(commandAction.execute(any()))
                 .thenThrow(sshException("", "").toException());
         final ApiException thrownException = assertThrows(
                 ApiException.class , ()-> commandService.executeCommand(commandRequestDto)

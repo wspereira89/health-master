@@ -20,4 +20,6 @@ public class CommandRequestDto {
     @Min(value = 1, message = "The Server Manager ID must be greater than zero")
     private final Long serverManagerId;
     private final Long applicationId;
+    private final String nameFile;
+    private final String pathFile;
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spc.healthmaster.dtos.ApiErrorDto;
 import com.spc.healthmaster.dtos.CommandRequestDto;
+import com.spc.healthmaster.dtos.ResponseDto;
 import com.spc.healthmaster.enums.Status;
 import com.spc.healthmaster.services.commands.CommandService;
 import org.junit.jupiter.api.BeforeEach;
@@ -112,7 +113,8 @@ public class CommandControllerTest {
     @Test
     public void givenValidRequestWhenExecuteCommandThenReturnOk() throws Exception {
 
-        when(commandService.executeCommand(any(CommandRequestDto.class))).thenReturn(Status.RUNNING);
+        when(commandService.executeCommand(any(CommandRequestDto.class)))
+                .thenReturn(ResponseDto.builder().status(Status.RUNNING).build());
 
         // Configurar RestAssured y enviar la solicitud al controlador
         mockMvc.perform(post("/command")

@@ -1,8 +1,7 @@
 package com.spc.healthmaster.command;
 
-import com.spc.healthmaster.dtos.SshManagerDto;
-import com.spc.healthmaster.entity.ServerManager;
-import com.spc.healthmaster.enums.Status;
+import com.spc.healthmaster.dtos.ResponseDto;
+import com.spc.healthmaster.dtos.WrapperExecute;
 import com.spc.healthmaster.exception.ApiException;
 import com.spc.healthmaster.strategy.CommandStrategy;
 import org.springframework.stereotype.Component;
@@ -14,13 +13,12 @@ public class StartCommandAction implements CommandAction {
     public static final String START_COMMAND_ACTION = "startCommandAction";
 
     @Override
-    public Status execute(
-            final CommandStrategy commandStrategy, final SshManagerDto manager, final ServerManager serverManager
-    ) throws ApiException {
-        if (commandStrategy.status(manager, serverManager)) {
+    public ResponseDto execute(final WrapperExecute wrapper) throws ApiException {
+        final CommandStrategy commandStrategy =wrapper.getCommandStrategy();
+        if (commandStrategy.status(wrapper)) {
            throw  ALREADY_INITIALIZED.toException();
         }
-         commandStrategy.start(manager, serverManager);
+         commandStrategy.start(wrapper);
         return null;
     }
 }

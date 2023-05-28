@@ -1,12 +1,15 @@
 package com.spc.healthmaster.strategy;
 
-import com.spc.healthmaster.dtos.SshManagerDto;
-import com.spc.healthmaster.entity.ServerManager;
+import com.spc.healthmaster.dtos.FileDto;
+import com.spc.healthmaster.dtos.WrapperExecute;
 import com.spc.healthmaster.enums.TypeStrategy;
+import com.spc.healthmaster.exception.ApiException;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
-public class GlassfishAppCommandStrategy implements CommandStrategy {
+public class GlassfishAppCommandStrategy extends BaseCommandStrategy implements CommandStrategy {
 
     private String glassfish_user="usuario_glassfish";
     private String glassfish_password="contraseña_glassfish";
@@ -18,18 +21,28 @@ public class GlassfishAppCommandStrategy implements CommandStrategy {
     private String status ="asadmin --user=admin --passwordfile=/opt/glassfish3/glassfish/domains/domain1/config/passwords list-applications --type web | grep myapp";
 
     @Override
-    public String start(final SshManagerDto sshManagerDto, final ServerManager serverManager) {
+    public String start(final WrapperExecute wrapper) {
         return "";
     }
 
     @Override
-    public String stop(final SshManagerDto sshManagerDto, final ServerManager serverManager) {
+    public String stop(final WrapperExecute wrapper) {
         return "";
     }
 
     @Override
-    public boolean status(final SshManagerDto sshManagerDto, final ServerManager serverManager) {
+    public boolean status(final WrapperExecute wrapper) {
         return true;
+    }
+
+    @Override
+    public List<FileDto> getListFile(final WrapperExecute wrapper) throws ApiException {
+        return super.getListFile(wrapper);
+    }
+
+    @Override
+    public byte[] downloadFile(final WrapperExecute wrapper) throws ApiException {
+        return super.downloadFile(wrapper);
     }
 
     @Override

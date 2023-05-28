@@ -21,7 +21,7 @@ public final class ErrorConstants {
             "  \"error\":\"deserialization_error\",\n" +
             "  \"message\":\"JSON deserialization error\",\n" +
             "  \"status\":400,\n" +
-            "  \"causes\":[{\"code\":\"Action\",\"description\":\"must be one of: [START, STOP, STATUS]\"}],\n" +
+            "  \"causes\":[{\"code\":\"Action\",\"description\":\"must be one of: [START, STOP, STATUS, LOG, DOWNLOAD]\"}],\n" +
             "  \"expected\":false\n" +
             "}";
 
