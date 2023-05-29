@@ -11,7 +11,7 @@ import lombok.Data;
 public class NotificationDto {
     private TypeStrategy typeStrategy;
     private Action action;
-    private String applicationId;
+    private Long applicationId;
     private String serverName;
     private Status status;
 

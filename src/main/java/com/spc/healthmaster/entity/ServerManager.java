@@ -15,7 +15,7 @@ public class ServerManager {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private final String id;
+    private final Long id;
 
     @Enumerated(EnumType.STRING)
     private final TypeStrategy typeStrategy;
