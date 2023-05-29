@@ -39,4 +39,8 @@ public enum ApiErrorFactory {
     public static ApiErrorDto sshException(final String name, final String host) {
         return  new ApiErrorDto(SSH_CONNECTION_STATUS, "username :["+name+"] could not connect to host:["+host+"]",SC_BAD_GATEWAY);
     }
+
+    public static ApiErrorDto alreadyExistServer(){
+        return new ApiErrorDto("","", SC_BAD_REQUEST);
+    }
 }

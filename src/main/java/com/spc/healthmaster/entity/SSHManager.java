@@ -3,12 +3,14 @@ package com.spc.healthmaster.entity;
 
 import com.spc.healthmaster.dtos.SshManagerDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Builder
 @Data
 @Entity
 @Table(name = "ssh_manager")
@@ -36,6 +38,6 @@ public final class SSHManager {
     }
 
     public SshManagerDto toSshManager() {
-        return new SshManagerDto(this.serverName, this.host, this.userName, this.password);
+        return new SshManagerDto(this.id,this.serverName, this.host, this.userName, this.password);
     }
 }

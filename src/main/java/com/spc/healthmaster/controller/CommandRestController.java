@@ -56,7 +56,7 @@ public class CommandRestController {
         this.commandService = commandService;
     }
 
-    @PostMapping()
+    @PostMapping( )
     @Operation(summary = "Ejecutar comando sobre aplicación")
     public ResponseEntity<?> executeCommand(@Valid @RequestBody
                                                 @io.swagger.v3.oas.annotations.parameters.RequestBody(

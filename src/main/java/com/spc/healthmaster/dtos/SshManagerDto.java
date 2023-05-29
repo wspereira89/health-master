@@ -1,6 +1,7 @@
 package com.spc.healthmaster.dtos;
 
 import com.jcraft.jsch.*;
+import com.spc.healthmaster.entity.SSHManager;
 import com.spc.healthmaster.exception.ApiException;
 import lombok.Data;
 
@@ -15,17 +16,18 @@ public class SshManagerDto {
      */
     private static final String ENTER_KEY = "n";
     private final String serverName;
-
+    private final Long id;
     private final String host;
     private final String user;
     private final String password;
     private Session session;
 
-    public SshManagerDto(final String serverName, final String host, final String user, final String password) {
+    public SshManagerDto(final Long id,final String serverName, final String host, final String user, final String password) {
         this.serverName = serverName;
         this.host = host;
         this.user = user;
         this.password = password;
+        this.id = id;
     }
 
     private void connect() throws ApiException {
@@ -132,5 +134,15 @@ public class SshManagerDto {
         } catch (JSchException | SftpException e) {
             throw sshException(user, host).withCause("download", e.getMessage()).toException();
         }
+    }
+
+    public SSHManager to() {
+        return SSHManager.builder()
+                .id(this.id)
+                .host(this.host)
+                .userName(this.user)
+                .password(this.password)
+                .serverName(this.serverName)
+                .build();
     }
 }
