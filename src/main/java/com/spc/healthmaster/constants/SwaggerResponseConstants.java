@@ -3,9 +3,34 @@ package com.spc.healthmaster.constants;
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public final class ErrorConstants {
+public final class SwaggerResponseConstants {
 
-    public static final String ERROR_400_ARGUMENTS_NOT_VALID = "{\n" +
+    public static final String RESPONSE_SUCCESS_RUNNING ="{\n" +
+            " \"status\":\"RUNNING\",\n" +
+            " \"fileDtoList\":\"null\",\n" +
+            " \"download\":\"null\",\n" +
+            "}";
+
+    public static final String RESPONSE_SUCCESS_STOPPED ="{\n" +
+            " \"status\":\"STOPPED\",\n" +
+            " \"fileDtoList\":\"null\",\n" +
+            " \"download\":\"null\",\n" +
+            "}";
+    public static final String RESPONSE_SUCCESS_UNDEFINED ="{\n" +
+            " \"status\":\"UNDEFINED\",\n" +
+            " \"fileDtoList\":\"null\",\n" +
+            " \"download\":\"null\",\n" +
+            "}";
+
+    public static final String RESPONSE_SUCCESS_LOG ="{\n" +
+            " \"status\":\"null\",\n" +
+            "  \"fileDtoList\":[\n" +
+            "    {\"name\":\"log1\",\"downloadUrl\":\"/logs/log1.txt\"},\n" +
+            "    {\"name\":\"log2\",\"downloadUrl\":\"/logs/log2.txt\"},\n" +
+            "  ], \n" +
+            "\"download\":\"null\"\n" +
+            "}";
+    public static final String RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID = "{\n" +
             "  \"error\":\"validation_error\",\n" +
             "  \"message\":\"Arguments not valid\",\n" +
             "  \"status\":400,\n" +
