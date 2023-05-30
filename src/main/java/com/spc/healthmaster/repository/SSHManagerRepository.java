@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface SSHManagerRepository  extends JpaRepository<SSHManager, Long> {
 
-    Optional<SSHManager> findByServerNameAndHostAndUsername(String serverName, String host, String username);
+    Optional<SSHManager> findByServerNameAndHostAndUserName(String serverName, String host, String username);
 }

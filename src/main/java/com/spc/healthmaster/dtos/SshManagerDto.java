@@ -1,5 +1,6 @@
 package com.spc.healthmaster.dtos;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jcraft.jsch.*;
 import com.spc.healthmaster.entity.SSHManager;
 import com.spc.healthmaster.exception.ApiException;
@@ -19,7 +20,9 @@ public class SshManagerDto {
     private final Long id;
     private final String host;
     private final String user;
+    @JsonIgnore
     private final String password;
+    @JsonIgnore
     private Session session;
 
     public SshManagerDto(final Long id,final String serverName, final String host, final String user, final String password) {
@@ -38,11 +41,9 @@ public class SshManagerDto {
             try {
                 this.session = jsch.getSession(this.user, host, 2024);
 
-            this.session.setPassword(password);
-
-            // Parametro para no validar key de conexion.
-            this.session.setConfig("StrictHostKeyChecking", "no");
-            // Agregar el SessionListener
+                this.session.setPassword(password);
+                // Parametro para no validar key de conexion.
+                this.session.setConfig("StrictHostKeyChecking", "no");
 
             this.session.connect();
             } catch (final JSchException e) {

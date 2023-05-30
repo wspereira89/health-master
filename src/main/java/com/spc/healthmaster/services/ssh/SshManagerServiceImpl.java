@@ -44,7 +44,7 @@ public class SshManagerServiceImpl implements SshManagerService {
     @Override
     public void saved(final SshManagerDto sshManagerDto) throws ApiException {
         final boolean existSsh = sshManagerRepository
-                .findByServerNameAndHostAndUsername(sshManagerDto.getServerName(), sshManagerDto.getHost(), sshManagerDto.getUser())
+                .findByServerNameAndHostAndUserName(sshManagerDto.getServerName(), sshManagerDto.getHost(), sshManagerDto.getUser())
                 .isPresent();
         if(existSsh) {
             throw alreadyExistServer().toException();
@@ -56,7 +56,7 @@ public class SshManagerServiceImpl implements SshManagerService {
     @Override
     public void edit(SshManagerDto sshManagerDto) throws ApiException {
         sshManagerRepository
-                .findByServerNameAndHostAndUsername(sshManagerDto.getServerName(), sshManagerDto.getHost(), sshManagerDto.getUser())
+                .findByServerNameAndHostAndUserName(sshManagerDto.getServerName(), sshManagerDto.getHost(), sshManagerDto.getUser())
                 .orElseThrow(()->notFoundConnectionSsh(1l).toException());
         modifySshManagerMap(sshManagerDto);
     }

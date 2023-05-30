@@ -48,11 +48,11 @@ import static com.spc.healthmaster.constants.SwaggerResponseConstants.ERROR_400_
                 @ExampleObject(value = "{\"error\":\"internal_server_error\",\"message\":\"Internal server error\",\"status\":500,\"expected\":true,\"causes\":[]}")
         }))
 })
-public class CommandRestController {
+public class CommandController {
 
     private final CommandService commandService;
 
-    public CommandRestController(final CommandService commandService) {
+    public CommandController(final CommandService commandService) {
         this.commandService = commandService;
     }
 

@@ -26,8 +26,8 @@ public class SshManagerServiceTest {
     @Mock
     private Map<Long, SshManagerDto> sshManagerMap;
 
-
     private SshManagerService sshManagerService;
+
     @BeforeEach
     public void setup() {
         openMocks(this);
@@ -60,7 +60,7 @@ public class SshManagerServiceTest {
 
     @Test
     public void whenTrySaveSshManagerThenOk() throws ApiException {
-        when(sshManagerRepository.findByServerNameAndHostAndUsername(anyString(), anyString(), anyString()))
+        when(sshManagerRepository.findByServerNameAndHostAndUserName(anyString(), anyString(), anyString()))
                 .thenReturn(Optional.empty());
         final SSHManager sshManager = SSHManager.builder()
                 .id(1L).build();
@@ -72,7 +72,7 @@ public class SshManagerServiceTest {
 
     @Test()
     public void whenTrySaveSshManagerThenReturnApiException()  {
-        when(sshManagerRepository.findByServerNameAndHostAndUsername(anyString(), anyString(), anyString()))
+        when(sshManagerRepository.findByServerNameAndHostAndUserName(anyString(), anyString(), anyString()))
                 .thenReturn(getSshManager(1l));
 
        assertThrows(ApiException.class,()-> sshManagerService.saved(getSshManagerDto(1l)));
@@ -80,7 +80,7 @@ public class SshManagerServiceTest {
 
     @Test
     public void testEdit_WhenSshManagerExists() throws ApiException {
-        when(sshManagerRepository.findByServerNameAndHostAndUsername(anyString(), anyString(), anyString()))
+        when(sshManagerRepository.findByServerNameAndHostAndUserName(anyString(), anyString(), anyString()))
                 .thenReturn(getSshManager(1l));
         when(sshManagerRepository.save(any())).thenReturn(getSshManager(1l).get());
         // Act
@@ -94,7 +94,7 @@ public class SshManagerServiceTest {
     @Test()
     public void testEdit_WhenSshManagerDoesNotExist() {
         // Arrange
-         when(sshManagerRepository.findByServerNameAndHostAndUsername(anyString(), anyString(), anyString()))
+         when(sshManagerRepository.findByServerNameAndHostAndUserName(anyString(), anyString(), anyString()))
                 .thenReturn(Optional.empty());
 
         assertThrows(ApiException.class,()-> sshManagerService.edit(getSshManagerDto(1l)));
@@ -103,6 +103,7 @@ public class SshManagerServiceTest {
     private SshManagerDto getSshManagerDto(final Long id){
         return new SshManagerDto(id, "Host1", "User1","","");
     }
+
     private Optional<SSHManager> getSshManager(Long id){
         return Optional.of(SSHManager.builder().id(id).build());
     }
