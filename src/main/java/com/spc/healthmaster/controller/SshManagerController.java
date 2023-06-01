@@ -1,11 +1,10 @@
 package com.spc.healthmaster.controller;
 
 import com.spc.healthmaster.dtos.SshManagerDto;
+import com.spc.healthmaster.exception.ApiException;
 import com.spc.healthmaster.services.ssh.SshManagerService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,6 +20,21 @@ public class SshManagerController {
     @GetMapping()
     public ResponseEntity<List<SshManagerDto>> getAllServer(){
          return ResponseEntity.ok(sshManagerService.getListSshManager());
+    }
+
+    @DeleteMapping("/id")
+    public void deleteById(@PathVariable Long id) {
+        sshManagerService.deleteShhManager(id);
+    }
+
+    @PostMapping()
+    public void save(@RequestBody SshManagerDto sshManagerDto) throws ApiException {
+        sshManagerService.saved(sshManagerDto);
+    }
+
+    @PutMapping()
+    public void edit(@RequestBody SshManagerDto sshManagerDto) throws ApiException {
+        this.sshManagerService.edit(sshManagerDto);
     }
 
 }
