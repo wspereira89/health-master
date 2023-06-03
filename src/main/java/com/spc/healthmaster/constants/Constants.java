@@ -5,9 +5,13 @@ import lombok.experimental.UtilityClass;
 @UtilityClass
 public final class Constants {
 
+    public static final String JPA_ERROR = "jpa_error";
     public static final String ALREADY_INITIALIZED_STATUS = "already_initialized";
     public static final String ALREADY_STOPPED_STATUS = "already_stopped";
     public static final String SSH_CONNECTION_STATUS = "ssh_connection";
+    public static final String APPLICATION_NOT_DEPLOYED = "application_not_deployed";
+
+    public static final String ALREADY_EXIST_SERVER = "already_exist_server";
     
     public static final String JAVA_HOME = "/usr/java/jdk1.8.0_74/bin/java" ;
     public static final String JPROFILER_OPTS = "-agentpath:%s/libjprofilerti.so";

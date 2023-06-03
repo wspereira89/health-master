@@ -15,7 +15,6 @@ public class ApiException extends Exception {
     private final String error;
     private final String message;
     private final int status;
-    private final boolean expected;
     private final List<CauseDto> causeDtos;
 
     /**
@@ -24,10 +23,9 @@ public class ApiException extends Exception {
      * @param error the error code
      * @param message the error message
      * @param status the http status
-     * @param expected boolean telling if this is expected
      */
-    public ApiException(final String error, final String message, final int status, final boolean expected) {
-        this(error, message, status, expected, (List<CauseDto>) null);
+    public ApiException(final String error, final String message, final int status) {
+        this(error, message, status, (List<CauseDto>) null);
     }
 
     /**
@@ -36,11 +34,10 @@ public class ApiException extends Exception {
      * @param error the error code
      * @param message the error message
      * @param status the http status
-     * @param expected boolean telling if this is expected
      * @param throwable the cause
      */
-    public ApiException(final String error, final String message, final int status, final boolean expected, final Throwable throwable) {
-        this(error, message, status, expected);
+    public ApiException(final String error, final String message, final int status, final Throwable throwable) {
+        this(error, message, status);
         initCause(throwable);
     }
 
@@ -49,15 +46,13 @@ public class ApiException extends Exception {
      * @param error the code
      * @param message the description
      * @param status the statusCode
-     * @param expected the expected
      * @param causeDtos the causes
      */
-    public ApiException(final String error, final String message, final int status, final boolean expected, final List<CauseDto> causeDtos) {
+    public ApiException(final String error, final String message, final int status, final List<CauseDto> causeDtos) {
         super(message);
         this.error = error;
         this.message = message;
         this.status = status;
-        this.expected = expected;
         this.causeDtos = causeDtos;
     }
 

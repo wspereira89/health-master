@@ -17,11 +17,9 @@ public class ApiErrorDto {
     private int status;
 
     private final List<CauseDto> causes;
-    private boolean expected;
 
     /* default */ ApiErrorDto() {
         this.causes = Collections.emptyList();
-        this.expected = false;
     }
     public ApiErrorDto(String error, String message, int status) {
         this();
@@ -52,18 +50,16 @@ public class ApiErrorDto {
 
     public ApiErrorDto asExpected() {
         final ApiErrorDto apiErrorDto = new ApiErrorDto(error, message, status, causes);
-        apiErrorDto.expected = true;
+
         return apiErrorDto;
     }
 
     public ApiException toException() {
-        return new ApiException(error, message, status, expected, causes);
+        return new ApiException(error, message, status,  causes);
     }
 
     public static ApiErrorDto fromException(final ApiException e) {
-        final ApiErrorDto apiErrorDto = new ApiErrorDto(e.getError(), e.getMessage(), e.getStatus(), e.getCauseDtos());
-        apiErrorDto.expected = e.isExpected();
-        return apiErrorDto;
+        return new ApiErrorDto(e.getError(), e.getMessage(), e.getStatus(), e.getCauseDtos());
     }
 
     @Override
@@ -74,13 +70,12 @@ public class ApiErrorDto {
         return status == apiErrorDto.status &&
                 Objects.equals(error, apiErrorDto.error) &&
                 Objects.equals(message, apiErrorDto.message) &&
-                Objects.equals(expected, apiErrorDto.expected) &&
                 unorderedListEquals(causes, apiErrorDto.causes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(error, message, status, causes, expected);
+        return Objects.hash(error, message, status, causes);
     }
 
     private boolean unorderedListEquals(List<CauseDto> list1, List<CauseDto> list2) {

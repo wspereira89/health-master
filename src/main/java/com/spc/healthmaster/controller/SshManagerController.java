@@ -1,5 +1,6 @@
 package com.spc.healthmaster.controller;
 
+import com.spc.healthmaster.dtos.RequestServerDto;
 import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.exception.ApiException;
 import com.spc.healthmaster.services.ssh.SshManagerService;
@@ -22,19 +23,19 @@ public class SshManagerController {
          return ResponseEntity.ok(sshManagerService.getListSshManager());
     }
 
-    @DeleteMapping("/id")
-    public void deleteById(@PathVariable Long id) {
+    @DeleteMapping("/id/{id}")
+    public void deleteById(@PathVariable Long id) throws ApiException {
         sshManagerService.deleteShhManager(id);
     }
 
     @PostMapping()
-    public void save(@RequestBody SshManagerDto sshManagerDto) throws ApiException {
-        sshManagerService.saved(sshManagerDto);
+    public void save(@RequestBody RequestServerDto requestServerDto) throws ApiException {
+        sshManagerService.save(requestServerDto);
     }
 
     @PutMapping()
-    public void edit(@RequestBody SshManagerDto sshManagerDto) throws ApiException {
-        this.sshManagerService.edit(sshManagerDto);
+    public void edit(@RequestBody RequestServerDto requestServerDto) throws ApiException {
+        this.sshManagerService.edit(requestServerDto);
     }
 
 }

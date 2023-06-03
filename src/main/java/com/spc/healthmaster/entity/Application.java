@@ -16,6 +16,9 @@ public class Application {
     private final Long id;
 
     private final String applicationName;
+    private final String pathFile;
+    private final Integer jmxPort;
+    private final String memory;
 
     @ManyToOne
     @JoinColumn(name = "server_manager_id")

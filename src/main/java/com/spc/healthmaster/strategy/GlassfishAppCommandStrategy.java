@@ -7,12 +7,11 @@ import com.spc.healthmaster.entity.Application;
 import com.spc.healthmaster.entity.ServerManager;
 import com.spc.healthmaster.enums.TypeStrategy;
 import com.spc.healthmaster.exception.ApiException;
-import static com.spc.healthmaster.factories.ApiErrorFactory.ALREADY_STOPPED;
-import static com.spc.healthmaster.factories.ApiErrorFactory.ALREADY_INITIALIZED;
-import com.spc.healthmaster.repository.ApplicationRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
+import static com.spc.healthmaster.factories.ApiErrorFactory.*;
 
 @Component
 public class GlassfishAppCommandStrategy extends BaseCommandStrategy implements CommandStrategy {
@@ -22,41 +21,58 @@ public class GlassfishAppCommandStrategy extends BaseCommandStrategy implements 
     private static final String START_COMMAND="/opt/glassfish4/bin/asadmin --user=admin --passwordfile=%1s$ --port %2$s enable %3$s";
     private static final String STATUS_COMMAND ="/opt/glassfish4/bin/asadmin --user=admin --passwordfile=%1$s --port %2$s list-applications --long --type web | grep %3$s";
 
-   
-    
     @Override
     public void start(final WrapperExecute wrapper) throws ApiException {
         final SshManagerDto manager =wrapper.getSshManagerDto();
         if(this.status(wrapper)){
-              throw ALREADY_STOPPED.toException();
+              throw alreadyInitializedException(wrapper.getApplication().getApplicationName()).toException();
         }
-        final ServerManager  serverManager = wrapper.getServerManager();
-        manager.executeCommand(String.format(START_COMMAND, serverManager.getPasswordPath(), serverManager.getPort(), wrapper.getApplication().getApplicationName()));
+
+        final ServerManager serverManager = wrapper.getServerManager();
+        final String command = String.format(
+                START_COMMAND,
+                serverManager.getPasswordPath(),
+                serverManager.getPort(),
+                wrapper.getApplication().getApplicationName()
+        );
+        manager.executeCommand(command);
     }
 
     @Override
     public void stop(final WrapperExecute wrapper) throws ApiException {
-        final SshManagerDto manager =wrapper.getSshManagerDto();
-        if(!this.status(wrapper)){
-              throw ALREADY_INITIALIZED.toException();
+        final SshManagerDto manager = wrapper.getSshManagerDto();
+        if (!this.status(wrapper)) {
+              throw alreadyStoppedException(wrapper.getApplication().getApplicationName()).toException();
         }
-         final ServerManager  serverManager = wrapper.getServerManager();
-        manager.executeCommand(String.format(STOP_COMMAND, serverManager.getPasswordPath(), serverManager.getPort(),  wrapper.getApplication().getApplicationName()));
+
+        final ServerManager serverManager = wrapper.getServerManager();
+        final String command = String.format(
+                STOP_COMMAND,
+                serverManager.getPasswordPath(),
+                serverManager.getPort(),
+                wrapper.getApplication().getApplicationName()
+        );
+        manager.executeCommand(command);
     }
 
     @Override
     public boolean status(final WrapperExecute wrapper) throws ApiException {
         
-        final ServerManager  serverManager = wrapper.getServerManager();
-      
-        //String passwordFile ="glassfish4-domains/appsdomain4/config/mypass.txt";
-        final SshManagerDto manager =wrapper.getSshManagerDto();
-        final String result =manager
-                .executeCommand(String.format(STATUS_COMMAND, serverManager.getPasswordPath(), serverManager.getPort(),  wrapper.getApplication().getApplicationName()));
-        if(result.isEmpty()){
-            //Todo lanzar exception la aplicacion no se encuentra deployada en el glasfish
-            throw ALREADY_STOPPED.toException();
+        final ServerManager serverManager = wrapper.getServerManager();
+        final SshManagerDto manager = wrapper.getSshManagerDto();
+        final Application application = wrapper.getApplication();
+        final String command = String.format(
+                STATUS_COMMAND,
+                serverManager.getPasswordPath(),
+                serverManager.getPort(),
+                application.getApplicationName()
+        );
+
+        final String result = manager.executeCommand(command);
+        if (result.isEmpty()) {
+            throw notDeployException(application.getApplicationName(), serverManager.getUsername()).toException();
         }
+
         return result.contains(ENABLED);
     }
 

@@ -104,8 +104,8 @@ public class CommandControllerTest {
                 Arguments.of(notFoundConnectionSsh(1L), "not_found_server", 400),
                 Arguments.of(STRATEGY_NOT_FOUND, "strategy_not_found", 400),
                 Arguments.of(COMMAND_NOT_FOUND, "command_not_found", 400),
-                Arguments.of(ALREADY_INITIALIZED, "already_initialized", 400),
-                Arguments.of(ALREADY_STOPPED, "already_stopped", 400),
+                Arguments.of(alreadyInitializedException(""), "already_initialized", 400),
+                Arguments.of(alreadyStoppedException(""), "already_stopped", 400),
                 Arguments.of(sshException("", ""), "ssh_connection", 502)
         );
     }

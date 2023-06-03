@@ -7,6 +7,7 @@ import com.spc.healthmaster.entity.ServerManager;
 import com.spc.healthmaster.enums.Action;
 import com.spc.healthmaster.enums.TypeStrategy;
 import com.spc.healthmaster.exception.ApiException;
+import com.spc.healthmaster.repository.ApplicationRepository;
 import com.spc.healthmaster.repository.ServerManagerRepository;
 import com.spc.healthmaster.services.commands.CommandService;
 import com.spc.healthmaster.services.commands.CommandServiceImpl;
@@ -23,7 +24,6 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import static com.spc.healthmaster.factories.ApiErrorFactory.*;
-import com.spc.healthmaster.repository.ApplicationRepository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -115,7 +115,7 @@ public class CommandServiceTest {
         final CommandAction commandAction = mock(CommandAction.class);
         when(commandActions.get(any())).thenReturn(commandAction);
         when(commandAction.execute(any()))
-                .thenThrow(ALREADY_INITIALIZED.toException());
+                .thenThrow(alreadyInitializedException("").toException());
         final ApiException thrownException = assertThrows(
                 ApiException.class , ()-> commandService.executeCommand(commandRequestDto)
         );
@@ -137,7 +137,7 @@ public class CommandServiceTest {
         final CommandAction commandAction = mock(CommandAction.class);
         when(commandActions.get(any())).thenReturn(commandAction);
         when(commandAction.execute(any()))
-                .thenThrow(ALREADY_STOPPED.toException());
+                .thenThrow(alreadyStoppedException("").toException());
         final ApiException thrownException = assertThrows(
                 ApiException.class , ()-> commandService.executeCommand(commandRequestDto)
         );

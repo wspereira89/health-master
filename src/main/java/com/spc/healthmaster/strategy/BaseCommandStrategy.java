@@ -4,27 +4,27 @@ import com.spc.healthmaster.dtos.FileDto;
 import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.dtos.WrapperExecute;
 import com.spc.healthmaster.exception.ApiException;
-import static com.spc.healthmaster.factories.ApiErrorFactory.ALREADY_STOPPED;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.spc.healthmaster.factories.ApiErrorFactory.alreadyStoppedException;
 
 public abstract class BaseCommandStrategy {
     
     private static final String COMMAND_STATUS = "ps -ef | grep %s | grep -v grep | awk '{print $2}'";
     private static final String COMMAND_STOP = "kill -9 -f %s";
     
-    protected  void kill(final SshManagerDto manager, final String application) throws ApiException {
+    protected void kill(final SshManagerDto manager, final String application) throws ApiException {
         final String psId = this.getPdi(manager, application);
         if(psId.isEmpty()){
-              throw ALREADY_STOPPED.toException();
+              throw alreadyStoppedException(application).toException();
         }
-        
-       manager.executeCommand(String.format(COMMAND_STOP, psId));
+        manager.executeCommand(String.format(COMMAND_STOP, psId));
     }
     
-    protected  String getPdi(final SshManagerDto manager, final String application) throws ApiException {
+    protected String getPdi(final SshManagerDto manager, final String application) throws ApiException {
         return manager.executeCommand(String.format(COMMAND_STATUS, application));
     }
     

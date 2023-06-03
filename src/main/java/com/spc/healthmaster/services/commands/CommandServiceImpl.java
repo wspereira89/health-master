@@ -4,10 +4,13 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.spc.healthmaster.command.CommandAction;
 import com.spc.healthmaster.dtos.*;
+import com.spc.healthmaster.entity.Application;
 import com.spc.healthmaster.entity.ServerManager;
 import com.spc.healthmaster.enums.Action;
 import com.spc.healthmaster.enums.Status;
+import com.spc.healthmaster.enums.TypeStrategy;
 import com.spc.healthmaster.exception.ApiException;
+import com.spc.healthmaster.repository.ApplicationRepository;
 import com.spc.healthmaster.repository.ServerManagerRepository;
 import com.spc.healthmaster.services.ssh.SshManagerComposite;
 import com.spc.healthmaster.services.websoket.MessageService;
@@ -17,17 +20,11 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import static com.spc.healthmaster.constants.Constants.*;
-import com.spc.healthmaster.entity.Application;
-import com.spc.healthmaster.enums.TypeStrategy;
-import static com.spc.healthmaster.enums.TypeStrategy.GLASSFISH_APP;
-import static com.spc.healthmaster.enums.TypeStrategy.GLASSFISH_SERVER;
-import static com.spc.healthmaster.enums.TypeStrategy.TOMCAT_APP;
-import static com.spc.healthmaster.enums.TypeStrategy.TOMCAT_SERVER;
+import static com.spc.healthmaster.enums.TypeStrategy.*;
 import static com.spc.healthmaster.factories.ApiErrorFactory.*;
-import com.spc.healthmaster.repository.ApplicationRepository;
-import java.util.Set;
 
 @Service
 public class CommandServiceImpl implements CommandService {
@@ -73,13 +70,13 @@ public class CommandServiceImpl implements CommandService {
         if(commandRequestDto.getApplicationId()!=null && commandRequestDto.getApplicationId()!=0){
              final Application application= applicationRepository
                      .findById(commandRequestDto.getApplicationId())
-                     .orElseThrow(()-> ALREADY_INITIALIZED.toException());
+                     .orElseThrow(()-> notFoundApplication(commandRequestDto.getApplicationId()).toException());
             wrapperBuilder.application(application);
         }
         
         if(MAP_STRATEGY_WITH_SERVER.contains(commandRequestDto.getTypeStrategy())){
             final ServerManager serverManager = serverManagerRepository.findById(commandRequestDto.getServerManagerId())
-                .orElseThrow(()-> notFoundApplication(commandRequestDto.getServerManagerId()).toException());
+                .orElseThrow(()-> notFoundServerManager(commandRequestDto.getServerManagerId()).toException());
             wrapperBuilder.serverManager(serverManager);
         }
 
@@ -88,8 +85,10 @@ public class CommandServiceImpl implements CommandService {
                 .filter(commandStrategy-> commandRequestDto.getTypeStrategy().equals(commandStrategy.getType()))
                 .findFirst()
                 .orElseThrow(STRATEGY_NOT_FOUND::toException);
+
         final CommandAction commandAction = Optional.ofNullable(commandActions.get(commandRequestDto.getCommand()))
                 .orElseThrow(COMMAND_NOT_FOUND::toException);
+
         final NotificationDto.NotificationDtoBuilder notificationDto = NotificationDto
                 .builder()
                 .typeStrategy(commandRequestDto.getTypeStrategy())

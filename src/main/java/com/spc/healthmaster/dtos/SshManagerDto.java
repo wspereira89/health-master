@@ -1,10 +1,7 @@
 package com.spc.healthmaster.dtos;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jcraft.jsch.*;
-import com.spc.healthmaster.entity.SSHManager;
 import com.spc.healthmaster.exception.ApiException;
-import static com.spc.healthmaster.factories.ApiErrorFactory.ALREADY_STOPPED;
 import lombok.Data;
 
 import java.io.*;
@@ -17,13 +14,12 @@ public class SshManagerDto {
      * Constante que representa un enter.
      */
     private static final String ENTER_KEY = "n";
+    private static final String COMMAND_EXEC = "exec";
     private final String serverName;
     private final Long id;
     private final String host;
     private final String user;
-    @JsonIgnore
     private final String password;
-    @JsonIgnore
     private Session session;
 
     public SshManagerDto(final Long id,final String serverName, final String host, final String user, final String password) {
@@ -34,7 +30,7 @@ public class SshManagerDto {
         this.id = id;
     }
 
-    private void connect() throws ApiException {
+    public void connect() throws ApiException {
 
         if (this.session == null || !this.session.isConnected()) {
             final JSch jsch = new JSch();
@@ -43,19 +39,12 @@ public class SshManagerDto {
                 this.session = jsch.getSession(this.user, host, 22);
 
                 this.session.setPassword(password);
-                // Parametro para no validar key de conexion.
                 this.session.setConfig("StrictHostKeyChecking", "no");
 
             this.session.connect();
             } catch (final JSchException e) {
                 throw sshException(user, host).withCause("session", e.getMessage()).toException();
             }
-        }
-    }
-
-   public void disconnect() {
-        if (session != null) {
-            session.disconnect();
         }
     }
 
@@ -87,9 +76,9 @@ public class SshManagerDto {
 
         ChannelExec channelExec = null;
         try {
-            channelExec = (ChannelExec) this.session.openChannel("exec");
+            channelExec = (ChannelExec) this.session.openChannel(COMMAND_EXEC);
             final InputStream in = channelExec.getInputStream();
-            ByteArrayOutputStream errorStream = new ByteArrayOutputStream();     // Ejecutamos el comando.
+            ByteArrayOutputStream errorStream = new ByteArrayOutputStream();
             channelExec.setCommand(command);
             channelExec.setErrStream(errorStream);
             channelExec.connect();
@@ -103,9 +92,8 @@ public class SshManagerDto {
                 builder.append(linea);
             }
            
-           if (channelExec.getExitStatus() != 0) { 
-               
-                 throw sshException(user, host).withCause("exec", errorStream.toString()).toException();
+           if (channelExec.getExitStatus() != 0) {
+                 throw sshException(user, host).withCause(COMMAND_EXEC, errorStream.toString()).toException();
            }
 
             // Cerramos el canal SSH.
@@ -114,7 +102,7 @@ public class SshManagerDto {
             // Retornamos el texto impreso en la consola.
             return builder.toString();
         } catch (final JSchException | IOException e) {
-            throw sshException(user, host).withCause("exec", e.getMessage()).toException();
+            throw sshException(user, host).withCause(COMMAND_EXEC, e.getMessage()).toException();
         }
     }
 
@@ -142,13 +130,5 @@ public class SshManagerDto {
         }
     }
 
-    public SSHManager to() {
-        return SSHManager.builder()
-                .id(this.id)
-                .host(this.host)
-                .userName(this.user)
-                .password(this.password)
-                .serverName(this.serverName)
-                .build();
-    }
+
 }

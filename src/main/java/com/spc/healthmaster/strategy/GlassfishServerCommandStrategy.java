@@ -3,43 +3,39 @@ package com.spc.healthmaster.strategy;
 import com.spc.healthmaster.dtos.FileDto;
 import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.dtos.WrapperExecute;
-import com.spc.healthmaster.entity.ServerManager;
 import com.spc.healthmaster.enums.TypeStrategy;
 import com.spc.healthmaster.exception.ApiException;
-import static com.spc.healthmaster.factories.ApiErrorFactory.ALREADY_INITIALIZED;
-import static com.spc.healthmaster.factories.ApiErrorFactory.ALREADY_STOPPED;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+import static com.spc.healthmaster.factories.ApiErrorFactory.alreadyInitializedException;
+
 @Component
 public class GlassfishServerCommandStrategy extends BaseCommandStrategy implements CommandStrategy {
     private static final String START_COMMAND ="script/%s start";
-    
+
     @Override
     public void start(final WrapperExecute wrapper) throws ApiException {
         
-        final SshManagerDto manager =wrapper.getSshManagerDto();
+        final SshManagerDto manager = wrapper.getSshManagerDto();
         
-        if(this.status(wrapper)){
-              throw ALREADY_INITIALIZED.toException();
+        if (this.status(wrapper)) {
+            throw alreadyInitializedException(wrapper.getServerManager().getUsername()).toException();
         }
         
-        manager
-            .executeCommand(String.format(START_COMMAND, wrapper.getServerManager().getUsername()));
+        manager.executeCommand(String.format(START_COMMAND, wrapper.getServerManager().getUsername()));
     }
 
     @Override
     public void stop(final WrapperExecute wrapper) throws ApiException {
-        final SshManagerDto manager =wrapper.getSshManagerDto();
+        final SshManagerDto manager = wrapper.getSshManagerDto();
          super.kill(manager, wrapper.getServerManager().getUsername());
     }
 
     @Override
-    public boolean status(final WrapperExecute wrapper) throws ApiException  {
-       final String result = super
-               .getPdi(wrapper.getSshManagerDto(), wrapper.getServerManager().getUsername());
-       return !result.isEmpty();
+    public boolean status(final WrapperExecute wrapper) throws ApiException {
+       return !super.getPdi(wrapper.getSshManagerDto(), wrapper.getServerManager().getUsername()).isEmpty();
     }
 
     @Override

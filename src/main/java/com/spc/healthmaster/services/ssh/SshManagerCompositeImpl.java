@@ -34,7 +34,7 @@ public class SshManagerCompositeImpl implements SshManagerComposite {
     public void init() {
         this.sshManagerMap = sshManagerRepository.findAll()
                 .stream()
-                .collect(Collectors.toMap(SSHManager::getId, SSHManager::toSshManager));
+                .collect(Collectors.toMap(SSHManager::getId, SSHManager::toSshManagerDto));
     }
 
     public SshManagerDto getSshManagerMapById(final Long serverId) throws ApiException {
