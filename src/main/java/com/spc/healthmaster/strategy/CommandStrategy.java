@@ -9,8 +9,10 @@ import java.util.List;
 
 public interface CommandStrategy {
 
-    String start(WrapperExecute wrapper) throws  ApiException;
-    String stop(WrapperExecute wrapper) throws  ApiException;
+    void start(WrapperExecute wrapper) throws  ApiException;
+    
+    void stop(WrapperExecute wrapper) throws  ApiException;
+    
     boolean status(WrapperExecute wrapper) throws ApiException;
 
     List<FileDto> getListFile(WrapperExecute wrapper) throws ApiException;

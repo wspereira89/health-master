@@ -23,6 +23,7 @@ import java.util.*;
 import java.util.stream.Stream;
 
 import static com.spc.healthmaster.factories.ApiErrorFactory.*;
+import com.spc.healthmaster.repository.ApplicationRepository;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -38,12 +39,13 @@ public class CommandServiceTest {
     @Mock private ServerManagerRepository serverManagerRepository;
     @Mock private List<CommandStrategy> commandStrategies;
     @Mock private MessageService messageService;
+    @Mock private ApplicationRepository applicationRepository;
 
     @BeforeEach
     public void setup() {
         openMocks(this);
         commandService =
-                new CommandServiceImpl(sshManagerComposite, serverManagerRepository, commandStrategies, commandActions, messageService);
+                new CommandServiceImpl(sshManagerComposite, serverManagerRepository, commandStrategies, commandActions, messageService, applicationRepository);
     }
 
     @Test

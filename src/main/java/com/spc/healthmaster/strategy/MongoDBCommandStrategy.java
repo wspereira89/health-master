@@ -12,13 +12,13 @@ import java.util.List;
 public class MongoDBCommandStrategy extends BaseCommandStrategy implements CommandStrategy {
 
     @Override
-    public String start(final WrapperExecute wrapper) {
-        return "";
+    public void start(final WrapperExecute wrapper) {
+        
     }
 
     @Override
-    public String stop(final WrapperExecute wrapper) {
-        return "";
+    public void stop(final WrapperExecute wrapper) {
+       
     }
 
     @Override

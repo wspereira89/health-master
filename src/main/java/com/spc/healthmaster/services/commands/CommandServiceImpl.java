@@ -1,6 +1,7 @@
 package com.spc.healthmaster.services.commands;
 
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.spc.healthmaster.command.CommandAction;
 import com.spc.healthmaster.dtos.*;
 import com.spc.healthmaster.entity.ServerManager;
@@ -18,7 +19,15 @@ import java.util.Map;
 import java.util.Optional;
 
 import static com.spc.healthmaster.constants.Constants.*;
+import com.spc.healthmaster.entity.Application;
+import com.spc.healthmaster.enums.TypeStrategy;
+import static com.spc.healthmaster.enums.TypeStrategy.GLASSFISH_APP;
+import static com.spc.healthmaster.enums.TypeStrategy.GLASSFISH_SERVER;
+import static com.spc.healthmaster.enums.TypeStrategy.TOMCAT_APP;
+import static com.spc.healthmaster.enums.TypeStrategy.TOMCAT_SERVER;
 import static com.spc.healthmaster.factories.ApiErrorFactory.*;
+import com.spc.healthmaster.repository.ApplicationRepository;
+import java.util.Set;
 
 @Service
 public class CommandServiceImpl implements CommandService {
@@ -28,34 +37,51 @@ public class CommandServiceImpl implements CommandService {
     private final ServerManagerRepository serverManagerRepository;
     private final List<CommandStrategy> commandStrategies;
     private final MessageService messageService;
+    private final ApplicationRepository applicationRepository;
     private final Map<String, Status>  statusMap =
             ImmutableMap.of(
                     ALREADY_INITIALIZED_STATUS, Status.RUNNING,
                     ALREADY_STOPPED_STATUS, Status.STOPPED,
                     SSH_CONNECTION_STATUS, Status.UNDEFINED
             );
-
+    private final Set<TypeStrategy> MAP_STRATEGY_WITH_SERVER = 
+            ImmutableSet.of(GLASSFISH_SERVER, TOMCAT_SERVER, GLASSFISH_APP, TOMCAT_APP);
+    
     public CommandServiceImpl(
             final SshManagerComposite sshManagerComposite,
             final ServerManagerRepository serverManagerRepository,
             final List<CommandStrategy> commandStrategies,
             final Map<Action, CommandAction> commandActions,
-            final MessageService messageService
+            final MessageService messageService,
+            final ApplicationRepository applicationRepository
     ) {
         this.sshManagerComposite = sshManagerComposite;
         this.serverManagerRepository = serverManagerRepository;
         this.commandStrategies = commandStrategies;
         this.commandActions = commandActions;
         this.messageService = messageService;
+        this.applicationRepository = applicationRepository;
 
     }
 
     @Override
     public ResponseDto executeCommand(final CommandRequestDto commandRequestDto) throws ApiException {
-        final ServerManager serverManager = serverManagerRepository.findById(commandRequestDto.getServerManagerId())
-                .orElseThrow(()-> notFoundApplication(commandRequestDto.getServerManagerId()).toException());
-
+        
         final SshManagerDto manager = this.sshManagerComposite.getSshManagerMapById(commandRequestDto.getSshManagerId());
+        final WrapperExecute.WrapperExecuteBuilder wrapperBuilder = WrapperExecute.builder();
+        
+        if(commandRequestDto.getApplicationId()!=null && commandRequestDto.getApplicationId()!=0){
+             final Application application= applicationRepository
+                     .findById(commandRequestDto.getApplicationId())
+                     .orElseThrow(()-> ALREADY_INITIALIZED.toException());
+            wrapperBuilder.application(application);
+        }
+        
+        if(MAP_STRATEGY_WITH_SERVER.contains(commandRequestDto.getTypeStrategy())){
+            final ServerManager serverManager = serverManagerRepository.findById(commandRequestDto.getServerManagerId())
+                .orElseThrow(()-> notFoundApplication(commandRequestDto.getServerManagerId()).toException());
+            wrapperBuilder.serverManager(serverManager);
+        }
 
         final CommandStrategy command = this.commandStrategies
                 .stream()
@@ -68,16 +94,15 @@ public class CommandServiceImpl implements CommandService {
                 .builder()
                 .typeStrategy(commandRequestDto.getTypeStrategy())
                 .action(commandRequestDto.getCommand())
-                .applicationId(serverManager.getId())
+               // .applicationId(serverManager.getId())
                 .serverName(manager.getServerName());
         try {
-            final WrapperExecute wrapper = WrapperExecute.builder()
+            wrapperBuilder
                     .pathFile(commandRequestDto.getPathFile())
                     .sshManagerDto(manager)
-                    .serverManager(serverManager)
                     .commandStrategy(command)
                     .build();
-             final ResponseDto response = commandAction.execute(wrapper);
+             final ResponseDto response = commandAction.execute(wrapperBuilder.build());
              response.getStatus()
                      .ifPresent(status -> {
                         notificationDto.status(status);

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jcraft.jsch.*;
 import com.spc.healthmaster.entity.SSHManager;
 import com.spc.healthmaster.exception.ApiException;
+import static com.spc.healthmaster.factories.ApiErrorFactory.ALREADY_STOPPED;
 import lombok.Data;
 
 import java.io.*;
@@ -39,7 +40,7 @@ public class SshManagerDto {
             final JSch jsch = new JSch();
 
             try {
-                this.session = jsch.getSession(this.user, host, 2024);
+                this.session = jsch.getSession(this.user, host, 22);
 
                 this.session.setPassword(password);
                 // Parametro para no validar key de conexion.
@@ -78,7 +79,7 @@ public class SshManagerDto {
      *                                luego de la ejecución del comando
      *                                SSH.
      */
-    public final String executeCommand(String command) throws ApiException {
+    public final String executeCommand(final String command) throws ApiException {
 
         if (!this.isConnected()) {
             this.connect();
@@ -88,9 +89,9 @@ public class SshManagerDto {
         try {
             channelExec = (ChannelExec) this.session.openChannel("exec");
             final InputStream in = channelExec.getInputStream();
-
-            // Ejecutamos el comando.
+            ByteArrayOutputStream errorStream = new ByteArrayOutputStream();     // Ejecutamos el comando.
             channelExec.setCommand(command);
+            channelExec.setErrStream(errorStream);
             channelExec.connect();
 
             // Obtenemos el texto impreso en la consola.
@@ -100,8 +101,12 @@ public class SshManagerDto {
 
             while ((linea = reader.readLine()) != null) {
                 builder.append(linea);
-                builder.append(ENTER_KEY);
             }
+           
+           if (channelExec.getExitStatus() != 0) { 
+               
+                 throw sshException(user, host).withCause("exec", errorStream.toString()).toException();
+           }
 
             // Cerramos el canal SSH.
             channelExec.disconnect();
