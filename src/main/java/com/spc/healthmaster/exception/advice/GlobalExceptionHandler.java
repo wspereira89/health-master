@@ -1,7 +1,7 @@
 package com.spc.healthmaster.exception.advice;
 
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
-import com.spc.healthmaster.dtos.CauseDto;
+import com.spc.healthmaster.dtos.error.CauseDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,5 +1,6 @@
-package com.spc.healthmaster.dtos;
+package com.spc.healthmaster.dtos.request;
 
+import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.entity.SSHManager;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RequestServerDto {
+public class RequestResponseSshManagerDto {
     @NotNull(message = "Invalid  server Name")
     private String serverName;
 

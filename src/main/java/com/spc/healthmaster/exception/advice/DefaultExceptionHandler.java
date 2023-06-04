@@ -1,6 +1,6 @@
 package com.spc.healthmaster.exception.advice;
 
-import com.spc.healthmaster.dtos.ApiErrorDto;
+import com.spc.healthmaster.dtos.error.ApiErrorDto;
 import com.spc.healthmaster.exception.ApiException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

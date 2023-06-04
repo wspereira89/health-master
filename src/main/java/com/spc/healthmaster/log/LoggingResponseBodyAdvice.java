@@ -16,17 +16,18 @@ public class LoggingResponseBodyAdvice implements ResponseBodyAdvice<Object> {
     private final Logger logger = LoggerFactory.getLogger(LoggingResponseBodyAdvice.class);
 
     @Override
-    public boolean supports(MethodParameter returnType, Class converterType) {
+    public boolean supports(final MethodParameter returnType, final Class converterType) {
         // Aplica a todos los métodos que retornan ResponseEntity o cualquier tipo de objeto
         return ResponseEntity.class.isAssignableFrom(returnType.getParameterType());
     }
 
     @Override
-    public Object beforeBodyWrite(Object body, MethodParameter returnType, MediaType selectedContentType, Class selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
-        // Loguea la respuesta
+    public Object beforeBodyWrite(
+            final Object body, MethodParameter returnType,
+            final MediaType selectedContentType,
+            final Class selectedConverterType, ServerHttpRequest request,
+            final ServerHttpResponse response) {
         logger.info("Response: {}", body);
-
-        // Retorna el body sin modificaciones
         return body;
     }
 }

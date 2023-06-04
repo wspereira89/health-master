@@ -64,15 +64,15 @@ public final class SwaggerServerdResponseConstants {
             "  ]\n" +
             "}";
 
-    public static final String SERVER_ERROR_400_ALREADY_EXIST_SERVER = "{\n" +
-            "    \"error\": \"already_exist_server\",\n" +
-            "    \"message\": \"the server [SERVERNAME] is already registered in the database\",\n" +
+    public static final String SERVER_ERROR_400_ALREADY_EXIST_SSHMANAGER = "{\n" +
+            "    \"error\": \"already_exist_ssManager\",\n" +
+            "    \"message\": \"the sshManager [SERVERNAME] is already registered in the database\",\n" +
             "    \"status\": 400,\n" +
             "    \"causes\": []\n" +
             "}";
 
-    public static final String EDIT_SERVER_ERROR_404_NOT_FOUND_SERVER = "{\n" +
-            "    \"error\": \"not_found_server\",\n" +
+    public static final String EDIT_SERVER_ERROR_404_NOT_FOUND_SSHMANAGER = "{\n" +
+            "    \"error\": \"not_found_sshManager\",\n" +
             "    \"message\": \"not found server Manager: 1\",\n" +
             "    \"status\": 404,\n" +
             "    \"causes\": []\n" +

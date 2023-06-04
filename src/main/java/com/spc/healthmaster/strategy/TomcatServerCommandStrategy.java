@@ -1,6 +1,6 @@
 package com.spc.healthmaster.strategy;
 
-import com.spc.healthmaster.dtos.FileDto;
+import com.spc.healthmaster.dtos.request.response.FileDto;
 import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.dtos.WrapperExecute;
 import com.spc.healthmaster.enums.TypeStrategy;

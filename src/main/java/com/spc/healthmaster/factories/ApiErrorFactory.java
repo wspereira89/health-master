@@ -1,6 +1,6 @@
 package com.spc.healthmaster.factories;
 
-import com.spc.healthmaster.dtos.ApiErrorDto;
+import com.spc.healthmaster.dtos.error.ApiErrorDto;
 
 import static com.spc.healthmaster.constants.Constants.*;
 import static javax.servlet.http.HttpServletResponse.*;
@@ -42,9 +42,12 @@ public enum ApiErrorFactory {
     public static ApiErrorDto notFoundServerManager(final Long serverId) {
         return  new ApiErrorDto(NOT_FOUND_ERROR_PREFIX+"server", "not found server Manager: "+ serverId, SC_NOT_FOUND);
     }
+    public static ApiErrorDto alreadyExistServerManager(final String server){
+        return new ApiErrorDto(ALREADY_EXIST_SSH_MANAGER,"the serverManager [" + server + "] is already registered in the database", SC_BAD_REQUEST);
+    }
 
     public static ApiErrorDto notFoundConnectionSsh(final Long serverId) {
-        return  new ApiErrorDto(NOT_FOUND_ERROR_PREFIX+"server", "not found connection ssh of serverId: "+ serverId, SC_NOT_FOUND);
+        return  new ApiErrorDto(NOT_FOUND_ERROR_PREFIX+"sshManager", "not found connection ssh of serverId: "+ serverId, SC_NOT_FOUND);
     }
 
     public static ApiErrorDto notFoundApplication(final Long application) {
@@ -55,7 +58,7 @@ public enum ApiErrorFactory {
         return  new ApiErrorDto(SSH_CONNECTION_STATUS, "username :["+name+"] could not connect to host:["+host+"]",SC_BAD_GATEWAY);
     }
 
-    public static ApiErrorDto alreadyExistServer(final String server){
-        return new ApiErrorDto(ALREADY_EXIST_SERVER,"the server [" + server + "] is already registered in the database", SC_BAD_REQUEST);
+    public static ApiErrorDto alreadyExistSshManager(final String server){
+        return new ApiErrorDto(ALREADY_EXIST_SSH_MANAGER,"the sshManager [" + server + "] is already registered in the database", SC_BAD_REQUEST);
     }
 }

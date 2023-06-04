@@ -1,4 +1,4 @@
-package com.spc.healthmaster.dtos;
+package com.spc.healthmaster.dtos.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

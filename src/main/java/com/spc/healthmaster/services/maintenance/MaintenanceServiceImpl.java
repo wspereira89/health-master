@@ -1,6 +1,6 @@
 package com.spc.healthmaster.services.maintenance;
 
-import com.spc.healthmaster.dtos.MaintenanceRequestDto;
+import com.spc.healthmaster.dtos.request.MaintenanceRequestDto;
 import com.spc.healthmaster.event.MaintenanceEventPublisher;
 import com.spc.healthmaster.repository.MaintenanceRepository;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package com.spc.healthmaster.dtos;
+package com.spc.healthmaster.dtos.request.response;
 
 import com.spc.healthmaster.enums.Status;
 import lombok.Builder;

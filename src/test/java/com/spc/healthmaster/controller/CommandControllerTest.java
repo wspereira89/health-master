@@ -2,9 +2,9 @@ package com.spc.healthmaster.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spc.healthmaster.dtos.ApiErrorDto;
-import com.spc.healthmaster.dtos.CommandRequestDto;
-import com.spc.healthmaster.dtos.ResponseDto;
+import com.spc.healthmaster.dtos.error.ApiErrorDto;
+import com.spc.healthmaster.dtos.request.CommandRequestDto;
+import com.spc.healthmaster.dtos.request.response.ResponseDto;
 import com.spc.healthmaster.enums.Status;
 import com.spc.healthmaster.services.commands.CommandService;
 import org.junit.jupiter.api.BeforeEach;
@@ -101,7 +101,7 @@ public class CommandControllerTest {
     private static Stream<Arguments> apiErrorAndResponseProvider() {
         return Stream.of(
                 Arguments.of(notFoundApplication(1L), "not_found_application", 400),
-                Arguments.of(notFoundConnectionSsh(1L), "not_found_server", 400),
+                Arguments.of(notFoundConnectionSsh(1L), "not_found_sshManager", 400),
                 Arguments.of(STRATEGY_NOT_FOUND, "strategy_not_found", 400),
                 Arguments.of(COMMAND_NOT_FOUND, "command_not_found", 400),
                 Arguments.of(alreadyInitializedException(""), "already_initialized", 400),

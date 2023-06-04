@@ -1,8 +1,8 @@
 package com.spc.healthmaster.controller;
 
-import com.spc.healthmaster.dtos.ApiErrorDto;
-import com.spc.healthmaster.dtos.CommandRequestDto;
-import com.spc.healthmaster.dtos.ResponseDto;
+import com.spc.healthmaster.dtos.error.ApiErrorDto;
+import com.spc.healthmaster.dtos.request.CommandRequestDto;
+import com.spc.healthmaster.dtos.request.response.ResponseDto;
 import com.spc.healthmaster.exception.ApiException;
 import com.spc.healthmaster.services.commands.CommandService;
 import io.swagger.v3.oas.annotations.Operation;

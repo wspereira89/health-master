@@ -1,6 +1,6 @@
 package com.spc.healthmaster.event;
 
-import com.spc.healthmaster.dtos.CommandRequestDto;
+import com.spc.healthmaster.dtos.request.CommandRequestDto;
 import com.spc.healthmaster.exception.ApiException;
 import com.spc.healthmaster.services.commands.CommandService;
 import lombok.extern.slf4j.Slf4j;

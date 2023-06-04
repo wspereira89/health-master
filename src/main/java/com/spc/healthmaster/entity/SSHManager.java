@@ -1,7 +1,7 @@
 package com.spc.healthmaster.entity;
 
 
-import com.spc.healthmaster.dtos.RequestServerDto;
+import com.spc.healthmaster.dtos.request.RequestResponseSshManagerDto;
 import com.spc.healthmaster.dtos.SshManagerDto;
 import lombok.*;
 
@@ -28,7 +28,7 @@ public final class SSHManager {
         return new SshManagerDto(this.id,this.serverName, this.host, this.userName, this.password);
     }
 
-    public RequestServerDto toRequestServerDto() {
-        return new RequestServerDto(serverName, id, host, userName, password);
+    public RequestResponseSshManagerDto toRequestServerDto() {
+        return new RequestResponseSshManagerDto(serverName, id, host, userName, password);
     }
 }

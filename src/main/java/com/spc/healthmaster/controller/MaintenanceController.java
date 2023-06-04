@@ -1,6 +1,6 @@
 package com.spc.healthmaster.controller;
 
-import com.spc.healthmaster.dtos.MaintenanceRequestDto;
+import com.spc.healthmaster.dtos.request.MaintenanceRequestDto;
 import com.spc.healthmaster.services.maintenance.MaintenanceService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,6 +1,6 @@
 package com.spc.healthmaster.strategy;
 
-import com.spc.healthmaster.dtos.FileDto;
+import com.spc.healthmaster.dtos.request.response.FileDto;
 import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.dtos.WrapperExecute;
 import com.spc.healthmaster.entity.Application;
@@ -31,7 +31,7 @@ public class GlassfishAppCommandStrategy extends BaseCommandStrategy implements 
         final ServerManager serverManager = wrapper.getServerManager();
         final String command = String.format(
                 START_COMMAND,
-                serverManager.getPasswordPath(),
+                serverManager.getPassword(),
                 serverManager.getPort(),
                 wrapper.getApplication().getApplicationName()
         );
@@ -48,7 +48,7 @@ public class GlassfishAppCommandStrategy extends BaseCommandStrategy implements 
         final ServerManager serverManager = wrapper.getServerManager();
         final String command = String.format(
                 STOP_COMMAND,
-                serverManager.getPasswordPath(),
+                serverManager.getPassword(),
                 serverManager.getPort(),
                 wrapper.getApplication().getApplicationName()
         );
@@ -63,7 +63,7 @@ public class GlassfishAppCommandStrategy extends BaseCommandStrategy implements 
         final Application application = wrapper.getApplication();
         final String command = String.format(
                 STATUS_COMMAND,
-                serverManager.getPasswordPath(),
+                serverManager.getPassword(),
                 serverManager.getPort(),
                 application.getApplicationName()
         );

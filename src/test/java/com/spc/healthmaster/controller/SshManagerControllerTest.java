@@ -3,8 +3,8 @@ package com.spc.healthmaster.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spc.healthmaster.dtos.ApiErrorDto;
-import com.spc.healthmaster.dtos.RequestServerDto;
+import com.spc.healthmaster.dtos.error.ApiErrorDto;
+import com.spc.healthmaster.dtos.request.RequestResponseSshManagerDto;
 import com.spc.healthmaster.services.ssh.SshManagerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,8 +38,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class SshManagerControllerTest {
 
-    private static final String DELETE_PATH = "/server/id/{id}";
-    private static final String PATH_BASE = "/server";
+    private static final String DELETE_PATH = "/sshConnection/id/{id}";
+    private static final String PATH_BASE = "/sshConnection";
     private static final Long id = 0L;
     private static final String VALID_BODY ="{\n" +
             "   \"user\":\"usprocessos\",\n" +
@@ -83,7 +83,7 @@ public class SshManagerControllerTest {
     @Test
     public void givenIdAnNotFoundInDatabaseWhenCallDeleteThenReturnServerError() throws Exception {
         final ApiErrorDto apiErrorDto = jpaException("");
-        doThrow(apiErrorDto.toException()).when(sshManagerService).deleteShhManager(id);
+        doThrow(apiErrorDto.toException()).when(sshManagerService).delete(id);
         mockMvc.perform(delete(DELETE_PATH, id))
                 .andExpect(status().is5xxServerError())
                 .andExpect(result -> {
@@ -94,14 +94,14 @@ public class SshManagerControllerTest {
 
     @Test
     public void givenIdWhenCallDeleteThenOk() throws Exception {
-        doNothing().when(sshManagerService).deleteShhManager(id);
+        doNothing().when(sshManagerService).delete(id);
         mockMvc.perform(delete(DELETE_PATH, id))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void whenCallGetAllServerReturnEmpty() throws Exception {
-        when(sshManagerService.getListSshManager()).thenReturn(Collections.emptyList());
+        when(sshManagerService.findAll()).thenReturn(Collections.emptyList());
         mockMvc.perform(get("/server"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
@@ -110,17 +110,17 @@ public class SshManagerControllerTest {
 
     @Test
     public void whenCallGetAllServerReturnList() throws Exception {
-        final List<RequestServerDto> mockSshManagers = Arrays.asList(
-                new RequestServerDto("Server1", 1l, "Host1", "User1", "passwrd"),
-                new RequestServerDto("Server2", 2l, "Host2", "User2", "passwrd")
+        final List<RequestResponseSshManagerDto> mockSshManagers = Arrays.asList(
+                new RequestResponseSshManagerDto("Server1", 1l, "Host1", "User1", "passwrd"),
+                new RequestResponseSshManagerDto("Server2", 2l, "Host2", "User2", "passwrd")
         );
-        when(sshManagerService.getListSshManager()).thenReturn(mockSshManagers);
+        when(sshManagerService.findAll()).thenReturn(mockSshManagers);
         final MvcResult result =  mockMvc.perform(get("/server"))
                 .andExpect(status().isOk())
                 .andReturn();
 
         String responseBody = result.getResponse().getContentAsString();
-        List<RequestServerDto> responseDtoList = new ObjectMapper().readValue(responseBody, new TypeReference<List<RequestServerDto>>() {});
+        List<RequestResponseSshManagerDto> responseDtoList = new ObjectMapper().readValue(responseBody, new TypeReference<List<RequestResponseSshManagerDto>>() {});
 
         // Realizar las aserciones sobre la lista de objetos
         assertEquals(2, responseDtoList.size());
@@ -132,7 +132,7 @@ public class SshManagerControllerTest {
         assertEquals("User2", responseDtoList.get(1).getUser());
 
         // Verificar que el método del servicio se haya llamado una vez
-        verify(sshManagerService, times(1)).getListSshManager();
+        verify(sshManagerService, times(1)).findAll();
     }
 
     @ParameterizedTest
@@ -152,7 +152,7 @@ public class SshManagerControllerTest {
 
     @Test
     public void givenAlreadyExistServerWhenCallSaveThenReturnBadRequest() throws Exception {
-        final ApiErrorDto apiErrorDto = alreadyExistServer("");
+        final ApiErrorDto apiErrorDto = alreadyExistSshManager("");
         doThrow(apiErrorDto.toException()).when(sshManagerService).save(any());
         mockMvc
                 .perform(post(PATH_BASE)
@@ -222,8 +222,8 @@ public class SshManagerControllerTest {
     }
 
     @Test
-    public void givenNotFoundServerWhenCallEditThenReturnNotFound() throws Exception {
-        final ApiErrorDto apiErrorDto = notFoundServerManager(1l);
+    public void givenNotFoundSshConnectionWhenCallEditThenReturnNotFound() throws Exception {
+        final ApiErrorDto apiErrorDto = notFoundConnectionSsh(1l);
         doThrow(apiErrorDto.toException()).when(sshManagerService).edit(any());
         mockMvc
                 .perform(put(PATH_BASE)
@@ -238,7 +238,7 @@ public class SshManagerControllerTest {
 
     @Test
     public void givenServerExitWhenCallEditThenReturnBadRequest() throws Exception {
-        final ApiErrorDto apiErrorDto = alreadyExistServer("");
+        final ApiErrorDto apiErrorDto = alreadyExistSshManager("");
         doThrow(apiErrorDto.toException()).when(sshManagerService).edit(any());
         mockMvc
                 .perform(put(PATH_BASE)

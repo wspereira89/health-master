@@ -1,7 +1,7 @@
 package com.spc.healthmaster.service;
 
 import com.spc.healthmaster.command.CommandAction;
-import com.spc.healthmaster.dtos.CommandRequestDto;
+import com.spc.healthmaster.dtos.request.CommandRequestDto;
 import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.entity.ServerManager;
 import com.spc.healthmaster.enums.Action;
@@ -50,7 +50,7 @@ public class CommandServiceTest {
 
     @Test
     public void givenApplicationInvalidWhenCallExecuteCommandThenWillReturnApiExceptionNotFound() {
-        when(serverManagerRepository.findById(any())).thenReturn(Optional.empty());
+        when(applicationRepository.findById(any())).thenReturn(Optional.empty());
         final ApiException thrownException = assertThrows(
                 ApiException.class , ()-> commandService.executeCommand(mock(CommandRequestDto.class))
         );
@@ -66,7 +66,7 @@ public class CommandServiceTest {
         final ApiException thrownException = assertThrows(
                 ApiException.class , ()-> commandService.executeCommand(commandRequestDto)
         );
-        assertEquals("not_found_server", thrownException.getError());
+        assertEquals("not_found_sshManager", thrownException.getError());
     }
 
     @Test

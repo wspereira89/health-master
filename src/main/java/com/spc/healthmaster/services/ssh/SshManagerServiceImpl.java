@@ -1,6 +1,6 @@
 package com.spc.healthmaster.services.ssh;
 
-import com.spc.healthmaster.dtos.RequestServerDto;
+import com.spc.healthmaster.dtos.request.RequestResponseSshManagerDto;
 import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.entity.SSHManager;
 import com.spc.healthmaster.exception.ApiException;
@@ -30,7 +30,7 @@ public class SshManagerServiceImpl implements SshManagerService {
     }
 
     @Override
-    public List<RequestServerDto> getListSshManager() {
+    public List<RequestResponseSshManagerDto> findAll() {
         return sshManagerRepository.findAll()
                 .stream()
                 .map(SSHManager::toRequestServerDto)
@@ -38,7 +38,7 @@ public class SshManagerServiceImpl implements SshManagerService {
     }
 
     @Override
-    public void deleteShhManager(final Long id) throws ApiException {
+    public void delete(final Long id) throws ApiException {
         //Todo pedir al señor orlando que las bd tengan constraint no se elimine si es usada en otro lado el id
         try {
             sshManagerRepository.deleteById(id);
@@ -49,37 +49,37 @@ public class SshManagerServiceImpl implements SshManagerService {
     }
 
     @Override
-    public void save(final RequestServerDto requestServerDto) throws ApiException {
+    public void save(final RequestResponseSshManagerDto requestResponseSshManagerDto) throws ApiException {
         final boolean existSsh = sshManagerRepository
-                .findByServerNameAndHostAndUserName(requestServerDto.getServerName(), requestServerDto.getHost(), requestServerDto.getUser())
+                .findByServerNameAndHostAndUserName(requestResponseSshManagerDto.getServerName(), requestResponseSshManagerDto.getHost(), requestResponseSshManagerDto.getUser())
                 .isPresent();
         if(existSsh) {
-            throw alreadyExistServer(requestServerDto.getServerName()).toException();
+            throw alreadyExistSshManager(requestResponseSshManagerDto.getServerName()).toException();
         }
-        validConnectionSsh(requestServerDto.toSshManagerDto());
-        modifySshManagerMap(requestServerDto);
+       // validConnectionSsh(requestResponseSshManagerDto.toSshManagerDto());
+        modifySshManagerMap(requestResponseSshManagerDto);
     }
 
     @Override
-    public void edit(RequestServerDto requestServerDto) throws ApiException {
-        final SSHManager sshManager = sshManagerRepository.findById(requestServerDto.getId())
-                        .orElseThrow(()->notFoundServerManager(requestServerDto.getId()).toException());
-        final SSHManager other = requestServerDto.toSshManager();
+    public void edit(RequestResponseSshManagerDto requestResponseSshManagerDto) throws ApiException {
+        final SSHManager sshManager = sshManagerRepository.findById(requestResponseSshManagerDto.getId())
+                        .orElseThrow(()->notFoundConnectionSsh(requestResponseSshManagerDto.getId()).toException());
+        final SSHManager other = requestResponseSshManagerDto.toSshManager();
         if(other.equals(sshManager)) {
             return;
         }
 
         final Optional<SSHManager> findSshManager = sshManagerRepository
-                .findByServerNameAndHostAndUserName(requestServerDto.getServerName(), requestServerDto.getHost(), requestServerDto.getUser());
-        if(findSshManager.isPresent() && !findSshManager.get().getId().equals(requestServerDto.getId())) {
-            throw alreadyExistServer(requestServerDto.getServerName()).toException();
+                .findByServerNameAndHostAndUserName(requestResponseSshManagerDto.getServerName(), requestResponseSshManagerDto.getHost(), requestResponseSshManagerDto.getUser());
+        if(findSshManager.isPresent() && !findSshManager.get().getId().equals(requestResponseSshManagerDto.getId())) {
+            throw alreadyExistSshManager(requestResponseSshManagerDto.getServerName()).toException();
         }
 
-        validConnectionSsh(requestServerDto.toSshManagerDto());
-        modifySshManagerMap(requestServerDto);
+       // validConnectionSsh(requestResponseSshManagerDto.toSshManagerDto());
+        modifySshManagerMap(requestResponseSshManagerDto);
     }
 
-    private void modifySshManagerMap(final RequestServerDto sshManagerDto) throws ApiException {
+    private void modifySshManagerMap(final RequestResponseSshManagerDto sshManagerDto) throws ApiException {
         try {
             final SSHManager ssh = sshManagerRepository.save(sshManagerDto.toSshManager());
             this.sshManagerMap.put(ssh.getId(), ssh.toSshManagerDto());

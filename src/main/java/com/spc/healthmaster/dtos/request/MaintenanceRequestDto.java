@@ -1,4 +1,4 @@
-package com.spc.healthmaster.dtos;
+package com.spc.healthmaster.dtos.request;
 
 import com.spc.healthmaster.enums.Action;
 import lombok.Data;

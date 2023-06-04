@@ -1,7 +1,7 @@
 package com.spc.healthmaster.controller;
 
-import com.spc.healthmaster.dtos.ApiErrorDto;
-import com.spc.healthmaster.dtos.RequestServerDto;
+import com.spc.healthmaster.dtos.error.ApiErrorDto;
+import com.spc.healthmaster.dtos.request.RequestResponseSshManagerDto;
 import com.spc.healthmaster.exception.ApiException;
 import com.spc.healthmaster.services.ssh.SshManagerService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -22,7 +22,7 @@ import static com.spc.healthmaster.constants.SwaggerServerdResponseConstants.*;
 import static com.spc.healthmaster.factories.ApiErrorFactory.METHOD_ARGUMENT_NOT_VALID;
 
 @RestController
-@RequestMapping("/server")
+@RequestMapping("/sshConnection")
 @Tag(name = "SshManagerController", description = "En este controller podras encontrar todos los metodos para listar, crear,editar y eliminar de la base datos" +
         " la configuracion ssh para conectarte a un servidor ")
 public class SshManagerController {
@@ -33,13 +33,13 @@ public class SshManagerController {
     }
 
     @GetMapping()
-    @Operation(summary = "Obtiene la lista de servidores que estan registrados en la BD")
-    public ResponseEntity<List<RequestServerDto>> getAllServer(){
-         return ResponseEntity.ok(sshManagerService.getListSshManager());
+    @Operation(summary = "Obtiene la lista de conexiones ssh que estan registrados en la BD")
+    public ResponseEntity<List<RequestResponseSshManagerDto>> findAll(){
+         return ResponseEntity.ok(sshManagerService.findAll());
     }
 
     @DeleteMapping("/id/{id}")
-    @Operation(summary = "Eliminar un servidor en la BD")
+    @Operation(summary = "Eliminar una conexion ssh en la BD")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success"),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(examples = {
@@ -48,14 +48,14 @@ public class SshManagerController {
             }))
     })
     public void deleteById(@Valid @PathVariable("id") Long id) throws ApiException {
-        sshManagerService.deleteShhManager(id);
+        sshManagerService.delete(id);
     }
 
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success"),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content(schema = @Schema(implementation = ApiErrorDto.class), examples = {
                     @ExampleObject(name = "Arguments not valid", value = SERVER_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID),
-                    @ExampleObject(name = "already exist server ", value = SERVER_ERROR_400_ALREADY_EXIST_SERVER)
+                    @ExampleObject(name = "already exist sshManager ", value = SERVER_ERROR_400_ALREADY_EXIST_SSHMANAGER)
             })),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(examples = {
                     @ExampleObject(name = "Internal server error", value = SERVER_ERROR_500),
@@ -74,22 +74,22 @@ public class SshManagerController {
                                     description = "Este ejemplo te permitira Crear un servidor ")
                     }
             )
-    )  RequestServerDto requestServerDto) throws ApiException {
-        sshManagerService.save(requestServerDto);
+    ) RequestResponseSshManagerDto requestResponseSshManagerDto) throws ApiException {
+        sshManagerService.save(requestResponseSshManagerDto);
     }
 
     @PutMapping()
-    @Operation(summary = "Actualiza el servidor en la BD")
+    @Operation(summary = "Actualiza la conexion shh en la BD")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success"),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content(schema = @Schema(implementation = ApiErrorDto.class), examples = {
                     @ExampleObject(name = "Arguments not valid", value = SERVER_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID),
                     @ExampleObject(name = "Arguments not valid Id", value = EDIT_SERVER_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID_ID),
                     @ExampleObject(name = "Json Deserialization Unknown", value = EDIT_SERVER_ERROR_400_DESERIALIZATION_UNKNOWN),
-                    @ExampleObject(name = "already exist server ", value = SERVER_ERROR_400_ALREADY_EXIST_SERVER)
+                    @ExampleObject(name = "already exist server ", value = SERVER_ERROR_400_ALREADY_EXIST_SSHMANAGER)
             })),
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = ApiErrorDto.class), examples = {
-                    @ExampleObject(name = "not_found_server", value = EDIT_SERVER_ERROR_404_NOT_FOUND_SERVER)
+                    @ExampleObject(name = "not_found_sshManager", value = EDIT_SERVER_ERROR_404_NOT_FOUND_SSHMANAGER)
             })),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(examples = {
                     @ExampleObject(name = "Internal server error", value = SERVER_ERROR_500),
@@ -108,13 +108,13 @@ public class SshManagerController {
                                        description = "Este ejemplo te permitira Editar un server ")
                        }
                     )
-            ) RequestServerDto requestServerDto)
+            ) RequestResponseSshManagerDto requestResponseSshManagerDto)
             throws ApiException {
-        if(requestServerDto.getId() ==null ||requestServerDto.getId() ==0l) {
+        if(requestResponseSshManagerDto.getId() ==null || requestResponseSshManagerDto.getId() ==0l) {
            throw METHOD_ARGUMENT_NOT_VALID.withCause("id", "Invalid Id").toException();
         }
 
-        this.sshManagerService.edit(requestServerDto);
+        this.sshManagerService.edit(requestResponseSshManagerDto);
     }
 
 }

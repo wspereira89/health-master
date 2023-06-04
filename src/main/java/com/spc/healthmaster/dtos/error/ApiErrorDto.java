@@ -1,4 +1,4 @@
-package com.spc.healthmaster.dtos;
+package com.spc.healthmaster.dtos.error;
 
 import com.google.common.collect.ImmutableList;
 import com.spc.healthmaster.exception.ApiException;

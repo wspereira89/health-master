@@ -1,6 +1,6 @@
 package com.spc.healthmaster.exception;
 
-import com.spc.healthmaster.dtos.CauseDto;
+import com.spc.healthmaster.dtos.error.CauseDto;
 import lombok.Getter;
 import lombok.ToString;
 
