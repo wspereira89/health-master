@@ -14,6 +14,7 @@ import javax.validation.constraints.NotNull;
 public class RequestServerDto {
     @NotNull(message = "Invalid  server Name")
     private String serverName;
+
     private Long id;
 
     @NotNull(message = "Invalid Host")

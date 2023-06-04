@@ -23,26 +23,26 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 import static com.spc.healthmaster.constants.SwaggerRequestConstant.*;
-import static com.spc.healthmaster.constants.SwaggerResponseConstants.*;
-import static com.spc.healthmaster.constants.SwaggerResponseConstants.ERROR_400_DESERIALIZATION_UNKNOWN;
+import static com.spc.healthmaster.constants.SwaggerCommandResponseConstants.*;
+import static com.spc.healthmaster.constants.SwaggerCommandResponseConstants.COMMAND_ERROR_400_DESERIALIZATION_UNKNOWN;
 
 @RestController
 @RequestMapping("/command")
 @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Success", content = @Content(schema = @Schema(implementation = ResponseDto.class), examples = {
-                @ExampleObject(name = "RUNNING", value = RESPONSE_SUCCESS_RUNNING),
-                @ExampleObject(name = "STOPPED", value = RESPONSE_SUCCESS_STOPPED),
-                @ExampleObject(name = "UNDEFINED", value = RESPONSE_SUCCESS_UNDEFINED),
-                @ExampleObject(name = "VIEW LOG", value = RESPONSE_SUCCESS_LOG)
+                @ExampleObject(name = "RUNNING", value = COMMAND_RESPONSE_SUCCESS_RUNNING),
+                @ExampleObject(name = "STOPPED", value = COMMAND_RESPONSE_SUCCESS_STOPPED),
+                @ExampleObject(name = "UNDEFINED", value = COMMAND_RESPONSE_SUCCESS_UNDEFINED),
+                @ExampleObject(name = "VIEW LOG", value = COMMAND_RESPONSE_SUCCESS_LOG)
         })),
         @ApiResponse(responseCode = "204", description = "Success", content = {
                 @Content(mediaType = MediaType.TEXT_PLAIN_VALUE, schema = @Schema(type = "string", format = "binary"), examples = @ExampleObject(value = "Archivo TXT descargable"))
         }),
         @ApiResponse(responseCode = "400", description = "Bad request", content = @Content(schema = @Schema(implementation = ApiErrorDto.class), examples = {
-                @ExampleObject(name = "Arguments not valid", value = RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID),
-                @ExampleObject(name = "Json Deserialization command action", value = ERROR_400_DESERIALIZATION_COMMAND),
-                @ExampleObject(name = "Json Deserialization Type Strategy", value = ERROR_400_DESERIALIZATION_TYPE_STRATEGY),
-                @ExampleObject(name = "Json Deserialization Unknown", value = ERROR_400_DESERIALIZATION_UNKNOWN)
+                @ExampleObject(name = "Arguments not valid", value = COMMAND_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID),
+                @ExampleObject(name = "Json Deserialization command action", value = COMMAND_ERROR_400_DESERIALIZATION_COMMAND),
+                @ExampleObject(name = "Json Deserialization Type Strategy", value = COMMAND_ERROR_400_DESERIALIZATION_TYPE_STRATEGY),
+                @ExampleObject(name = "Json Deserialization Unknown", value = COMMAND_ERROR_400_DESERIALIZATION_UNKNOWN)
         })),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(examples = {
                 @ExampleObject(value = "{\"error\":\"internal_server_error\",\"message\":\"Internal server error\",\"status\":500,\"expected\":true,\"causes\":[]}")
@@ -60,7 +60,7 @@ public class CommandController {
     @Operation(summary = "Ejecutar comando sobre aplicación")
     public ResponseEntity<?> executeCommand(@Valid @RequestBody
                                                 @io.swagger.v3.oas.annotations.parameters.RequestBody(
-            description = DESRIPTION_REQUEST,
+            description = COMMAND_DESRIPTION_REQUEST,
             content = @Content(
                     mediaType = MediaType.APPLICATION_JSON_VALUE,
                     examples = {
