@@ -15,7 +15,7 @@ import javax.persistence.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @EqualsAndHashCode
-public final class SSHManager {
+public class SSHManager {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
