@@ -10,6 +10,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,8 @@ import static com.spc.healthmaster.factories.ApiErrorFactory.METHOD_ARGUMENT_NOT
 
 @RestController
 @RequestMapping("/server")
+@Tag(name = "SshManagerController", description = "En este controller podras encontrar todos los metodos para listar, crear,editar y eliminar de la base datos" +
+        " la configuracion ssh para conectarte a un servidor ")
 public class SshManagerController {
     private final SshManagerService sshManagerService;
 
