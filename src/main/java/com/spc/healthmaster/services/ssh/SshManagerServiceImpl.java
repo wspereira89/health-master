@@ -30,10 +30,10 @@ public class SshManagerServiceImpl implements SshManagerService {
     }
 
     @Override
-    public List<SshManagerDto> getListSshManager() {
+    public List<RequestServerDto> getListSshManager() {
         return sshManagerRepository.findAll()
                 .stream()
-                .map(SSHManager::toSshManagerDto)
+                .map(SSHManager::toRequestServerDto)
                 .collect(Collectors.toList());
     }
 

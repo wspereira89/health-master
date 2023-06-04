@@ -49,14 +49,14 @@ public class SshManagerServiceTest {
     public void whenCallGetListShhManagerThenReturnList() {
         final List<SSHManager> sshManagers = Arrays.asList(getSshManager(1l, PASSWORD).get(), getSshManager(2l, PASSWORD).get());
         when(sshManagerRepository.findAll()).thenReturn(sshManagers);
-        final List<SshManagerDto> result = sshManagerService.getListSshManager();
+        final List<RequestServerDto> result = sshManagerService.getListSshManager();
         assertEquals(2, result.size());
     }
 
     @Test
     public void whenCallGetListShhManagerThenReturnEmpty(){
         when(sshManagerRepository.findAll()).thenReturn(Collections.emptyList());
-        final List<SshManagerDto> result = sshManagerService.getListSshManager();
+        final List<RequestServerDto> result = sshManagerService.getListSshManager();
         assertTrue(result.isEmpty());
     }
 

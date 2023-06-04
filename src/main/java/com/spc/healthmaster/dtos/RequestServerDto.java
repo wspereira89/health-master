@@ -1,16 +1,20 @@
 package com.spc.healthmaster.dtos;
 
 import com.spc.healthmaster.entity.SSHManager;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class RequestServerDto {
-    private final String serverName;
-    private final Long id;
-    private final String host;
-    private final String user;
-    private final String password;
+    private String serverName;
+    private Long id;
+    private String host;
+    private String user;
+    private String password;
 
     public SSHManager toSshManager() {
         return SSHManager.builder()
