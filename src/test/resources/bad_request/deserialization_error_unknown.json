@@ -2,6 +2,5 @@
   "error":"deserialization_error",
   "message":"JSON deserialization error",
   "status":400,
-  "causes":[{"code":"unknown","description":"must be one of"}],
-  "expected":false
+  "causes":[{"code":"unknown","description":"must be one of"}]
 }

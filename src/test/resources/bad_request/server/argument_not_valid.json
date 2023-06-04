@@ -1,0 +1,23 @@
+{
+  "error": "validation_error",
+  "message": "Arguments not valid",
+  "status": 400,
+  "causes": [
+    {
+      "code": "user",
+      "description": "Invalid  user"
+    },
+    {
+      "code": "host",
+      "description": "Invalid Host"
+    },
+    {
+      "code": "password",
+      "description": "Invalid passwrod"
+    },
+    {
+      "code": "serverName",
+      "description": "Invalid  server Name"
+    }
+  ]
+}

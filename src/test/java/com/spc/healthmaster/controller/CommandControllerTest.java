@@ -76,12 +76,12 @@ public class CommandControllerTest {
     private static Stream<Arguments> badBodyAndResponseErrorCode() {
         return Stream.of(
                 Arguments.of("", "/bad_request/deserialization_error_unknown.json"),
-                Arguments.of("{}", "/bad_request/argument_not_valid.json"),
-                Arguments.of("{\"command\":null,\"typeStrategy\":null,\"sshManagerId\":null,\"serverManagerId\":null }", "/bad_request/argument_not_valid.json"),
-                Arguments.of( "{\"command\":\"\",\"typeStrategy\":\"\",\"sshManagerId\":\"\",\"serverManagerId\":\"\" }", "/bad_request/deserialization_error_command_action_enum.json"),
-                Arguments.of("{\"command\":\"type\",\"typeStrategy\":\"type\",\"sshManagerId\":\"1\",\"serverManagerId\":\"1\" }", "/bad_request/deserialization_error_command_action_enum.json"),
-                Arguments.of("{\"command\":\"start\",\"typeStrategy\":\"spring_boot_app\",\"sshManagerId\":\"1\",\"serverManagerId\":\"1\" }", "/bad_request/deserialization_error_command_action_enum.json"),
-                Arguments.of("{\"command\":\"START\",\"typeStrategy\":\"spring_boot_app\",\"sshManagerId\":\"1\",\"serverManagerId\":\"1\" }", "/bad_request/deserialization_error_typeStrategy_enum.json")
+                Arguments.of("{}", "/bad_request/command/argument_not_valid.json"),
+                Arguments.of("{\"command\":null,\"typeStrategy\":null,\"sshManagerId\":null,\"serverManagerId\":null }", "/bad_request/command/argument_not_valid.json"),
+                Arguments.of( "{\"command\":\"\",\"typeStrategy\":\"\",\"sshManagerId\":\"\",\"serverManagerId\":\"\" }", "/bad_request/command/deserialization_error_command_action_enum.json"),
+                Arguments.of("{\"command\":\"type\",\"typeStrategy\":\"type\",\"sshManagerId\":\"1\",\"serverManagerId\":\"1\" }", "/bad_request/command/deserialization_error_command_action_enum.json"),
+                Arguments.of("{\"command\":\"start\",\"typeStrategy\":\"spring_boot_app\",\"sshManagerId\":\"1\",\"serverManagerId\":\"1\" }", "/bad_request/command/deserialization_error_command_action_enum.json"),
+                Arguments.of("{\"command\":\"START\",\"typeStrategy\":\"spring_boot_app\",\"sshManagerId\":\"1\",\"serverManagerId\":\"1\" }", "/bad_request/command/deserialization_error_typeStrategy_enum.json")
         );
     }
 

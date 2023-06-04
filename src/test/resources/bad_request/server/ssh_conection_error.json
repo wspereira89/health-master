@@ -1,0 +1,11 @@
+{
+  "error": "ssh_connection",
+  "message": "username :[] could not connect to host:[]",
+  "status": 502,
+  "causes": [
+    {
+      "code": "session",
+      "description": "java.net.ConnectException: Connection refused: connect"
+    }
+  ]
+}

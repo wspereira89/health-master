@@ -29,7 +29,7 @@ public class SshManagerController {
     }
 
     @PostMapping()
-    public void save(@RequestBody RequestServerDto requestServerDto) throws ApiException {
+    public void save(@Valid @RequestBody RequestServerDto requestServerDto) throws ApiException {
         sshManagerService.save(requestServerDto);
     }
 

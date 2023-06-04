@@ -1,0 +1,6 @@
+{
+  "error":"deserialization_error",
+  "message":"JSON deserialization error",
+  "status":400,
+  "causes":[{"code":"Action","description":"must be one of: [START, STOP, STATUS, LOG, DOWNLOAD]"}]
+}

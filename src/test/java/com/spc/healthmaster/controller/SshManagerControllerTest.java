@@ -8,10 +8,14 @@ import com.spc.healthmaster.dtos.RequestServerDto;
 import com.spc.healthmaster.services.ssh.SshManagerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -20,13 +24,13 @@ import org.springframework.web.context.WebApplicationContext;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
-import static com.spc.healthmaster.factories.ApiErrorFactory.METHOD_ARGUMENT_NOT_VALID;
-import static com.spc.healthmaster.factories.ApiErrorFactory.jpaException;
+import static com.spc.healthmaster.factories.ApiErrorFactory.*;
+import static com.spc.healthmaster.util.JsonLoader.loadObject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -35,7 +39,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class SshManagerControllerTest {
 
     private static final String DELETE_PATH = "/server/id/{id}";
+    private static final String BODY_PATH = "/server";
     private static final Long id = 0L;
+    private static final String VALID_BODY ="{\n" +
+            "   \"user\":\"usprocessos\",\n" +
+            "   \"host\":\"10.18.100.32\",\n" +
+            "   \"password\":\"xxxxx\",\n" +
+            "   \"serverName\":\"server desconocido\"\n" +
+            "}";
 
     @Autowired
     private WebApplicationContext webApplicationContext;
@@ -117,9 +128,88 @@ public class SshManagerControllerTest {
         verify(sshManagerService, times(1)).getListSshManager();
     }
 
+    @ParameterizedTest
+    @MethodSource("badBodyAndResponseErrorCode")
+    public void givenInvalidBodyWhenCallSaveThenReturnBadRequest(final String badBody, final String path) throws Exception {
+        final ApiErrorDto apiErrorDto = loadObject(path, ApiErrorDto.class);
+        mockMvc
+                .perform(post(BODY_PATH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(badBody))
+                .andExpect(status().isBadRequest())
+                .andExpect(result -> {
+                    String response = result.getResponse().getContentAsString();
+                    assertEquals(apiErrorDto,  stringToApiError(response));
+                });
+    }
+
+    @Test
+    public void givenAlreadyExistServerWhenCallSaveThenReturnBadRequest() throws Exception {
+        final ApiErrorDto apiErrorDto = alreadyExistServer("");
+        doThrow(apiErrorDto.toException()).when(sshManagerService).save(any());
+        mockMvc
+                .perform(post(BODY_PATH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(VALID_BODY))
+                .andExpect(status().isBadRequest())
+                .andExpect(result -> {
+                    String response = result.getResponse().getContentAsString();
+                    assertEquals(apiErrorDto,  stringToApiError(response));
+                });
+    }
+
+    @Test
+    public void givenConnectionInvalidWhenCallSaveThenReturnBadGateway() throws Exception {
+        final ApiErrorDto apiErrorDto = sshException("usrprcess", "1018.100.30")
+                .withCause("session", "java.net.ConnectException: Connection timed out: connect");
+        doThrow(apiErrorDto.toException()).when(sshManagerService).save(any());
+        mockMvc
+                .perform(post(BODY_PATH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(VALID_BODY))
+                .andExpect(status().isBadGateway())
+                .andExpect(result -> {
+                    String response = result.getResponse().getContentAsString();
+                    assertEquals(apiErrorDto,  stringToApiError(response));
+                });
+    }
+
+    @Test
+    public void givenErrorDatabaseWhenCallaSaveThenReturnInternalError() throws Exception {
+        final ApiErrorDto apiErrorDto = jpaException("");
+        doThrow(apiErrorDto.toException()).when(sshManagerService).save(any());
+        mockMvc
+                .perform(post(BODY_PATH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(VALID_BODY))
+                .andExpect(status().is5xxServerError())
+                .andExpect(result -> {
+                    String response = result.getResponse().getContentAsString();
+                    assertEquals(apiErrorDto,  stringToApiError(response));
+                });
+    }
+
+    @Test
+    public void whenCallSaveThenOk() throws Exception {
+        doNothing().when(sshManagerService).save(any());
+        mockMvc
+                .perform(post(BODY_PATH)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(VALID_BODY))
+                .andExpect(status().isOk());
+    }
+
+
     private ApiErrorDto stringToApiError(final String errorAsString) throws JsonProcessingException {
         final ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(errorAsString, ApiErrorDto.class);
     }
 
+    private static Stream<Arguments> badBodyAndResponseErrorCode() {
+        return Stream.of(
+                Arguments.of("", "/bad_request/deserialization_error_unknown.json"),
+                Arguments.of("{}", "/bad_request/server/argument_not_valid.json"),
+                Arguments.of("{\n \"user\":null,\n \"host\":null,\n \"password\":null,\n \"serverName\":null\n }", "/bad_request/server/argument_not_valid.json")
+        );
+    }
 }

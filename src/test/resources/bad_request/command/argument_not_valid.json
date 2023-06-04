@@ -7,5 +7,5 @@
     {"code":"command","description":"Invalid command action"},
     {"code":"sshManagerId","description":"sshManagerId is required"},
     {"code":"serverManagerId","description":"ServerManagerId is required"}
-  ],"expected":false
+  ]
 }
