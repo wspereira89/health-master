@@ -1,0 +1,11 @@
+{
+  "error": "deserialization_error",
+  "message": "JSON deserialization error",
+  "status": 400,
+  "causes": [
+    {
+      "code": "Long",
+      "description": "must be one of: [Cannot deserialize value of type `java.lang.Long` from String \"x\": not a valid `java.lang.Long` value\n at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 2, column: 9] (through reference chain: com.spc.healthmaster.dtos.RequestServerDto[\"id\"])]"
+    }
+  ]
+}

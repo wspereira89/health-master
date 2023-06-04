@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.spc.healthmaster.factories.ApiErrorFactory.METHOD_ARGUMENT_NOT_VALID;
+
 @RestController
 @RequestMapping("/server")
 public class SshManagerController {
@@ -34,7 +36,12 @@ public class SshManagerController {
     }
 
     @PutMapping()
-    public void edit(@RequestBody RequestServerDto requestServerDto) throws ApiException {
+    public void edit(@Valid @RequestBody RequestServerDto requestServerDto)
+            throws ApiException {
+        if(requestServerDto.getId() ==null ||requestServerDto.getId() ==0l) {
+           throw METHOD_ARGUMENT_NOT_VALID.withCause("id", "Invalid Id").toException();
+        }
+
         this.sshManagerService.edit(requestServerDto);
     }
 

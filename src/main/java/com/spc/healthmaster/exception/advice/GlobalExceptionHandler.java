@@ -59,9 +59,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         if(mostSpecificCause instanceof InvalidFormatException) {
            final InvalidFormatException invalidFormatException = (InvalidFormatException) mostSpecificCause;
            fieldError = invalidFormatException.getTargetType().getSimpleName();
-           List<String> acceptedValues = Arrays.stream(invalidFormatException.getTargetType().getEnumConstants())
-                        .map(Object::toString)
-                        .collect(Collectors.toList());
+            List<String> acceptedValues = null;
+           if(invalidFormatException.getTargetType().getEnumConstants() != null) {
+               acceptedValues =  Arrays.stream(invalidFormatException.getTargetType().getEnumConstants())
+                       .map(Object::toString)
+                       .collect(Collectors.toList());
+           } else {
+               acceptedValues = Arrays.asList(mostSpecificCause.getMessage());
+           }
+
            errorMessage +=  ": " + acceptedValues;
         }
 

@@ -38,4 +38,5 @@ public class RequestServerDto {
     public SshManagerDto toSshManagerDto(){
         return new SshManagerDto(id, serverName, host, user, password);
     }
+
 }

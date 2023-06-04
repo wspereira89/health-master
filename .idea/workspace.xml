@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfe3893f-5276-4a6a-8881-3701e5ed86d4" name="Changes" comment="Agregand test a la clase controller de sshmanager&#10;, al request deletebyUdId">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/SshManagerControllerTest.java" afterDir="false" />
+    <list default="true" id="dfe3893f-5276-4a6a-8881-3701e5ed86d4" name="Changes" comment="Agregand test a la clase controller de sshmanager&#10;, al request save">
+      <change afterPath="$PROJECT_DIR$/src/test/resources/bad_request/server/argument_not_valid_id.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/bad_request/server/deserialization_error_unknown_id.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bdTest.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/bdTest.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bdTest.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/bdTest.trace.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/SshManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/SshManagerController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/RequestServerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/RequestServerDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/SSHManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/SSHManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/SshManagerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/SshManagerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/SshManagerControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/SshManagerControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,27 +75,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultPlantUmlFileTemplate&quot;: &quot;UML Activity&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.format.on.save.advertiser.fired&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.formatter.settings.were.checked&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.go.migrated.go.modules.settings&quot;: &quot;true&quot;,
-    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/MELISSA MIRANDA}/OneDrive/Documentos/health-master/diagramas&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultPlantUmlFileTemplate": "UML Activity",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.go.format.on.save.advertiser.fired": "true",
+    "RunOnceActivity.go.formatter.settings.were.checked": "true",
+    "RunOnceActivity.go.migrated.go.modules.settings": "true",
+    "SONARLINT_PRECOMMIT_ANALYSIS": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "go.import.settings.migrated": "true",
+    "last_opened_file_path": "C:/Users/MELISSA MIRANDA}/OneDrive/Documentos/health-master/src/test/resources/bad_request/server",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\MELISSA MIRANDA}\OneDrive\Documentos\health-master\src\test\resources\bad_request\server" />
       <recent name="C:\Users\MELISSA MIRANDA}\OneDrive\Documentos\health-master\src\test\resources\bad_request" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\MELISSA MIRANDA}\OneDrive\Documentos\health-master\src\test\resources\bad_request\cmmand" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.spc.healthmaster.strategy" />
@@ -105,20 +107,7 @@
       <recent name="com.spc.healthmaster.command" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SshManagerControllerTest.whenCallGetAllServerReturnList">
-    <configuration name="HealthMasterApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.HealthMasterApplication" />
-      <module name="health-master" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spc.healthmaster.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="JUnit.SshManagerControllerTest">
     <configuration name="SshManagerControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
@@ -134,7 +123,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SshManagerControllerTest.givenIdWhenCallDeleteThenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SshManagerControllerTest.givenConnectionShhInvalidWhenCallEditThenReturnBadGateway" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
@@ -144,13 +133,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
       <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.SshManagerControllerTest" />
-      <option name="METHOD_NAME" value="givenIdWhenCallDeleteThenOk" />
+      <option name="METHOD_NAME" value="givenConnectionShhInvalidWhenCallEditThenReturnBadGateway" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SshManagerControllerTest.whenCallGetAllServerReturnEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SshManagerControllerTest.givenInvalidBodyWhenCallEditThenReturnBadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
@@ -160,13 +149,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
       <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.SshManagerControllerTest" />
-      <option name="METHOD_NAME" value="whenCallGetAllServerReturnEmpty" />
+      <option name="METHOD_NAME" value="givenInvalidBodyWhenCallEditThenReturnBadRequest(java.lang.String,java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SshManagerControllerTest.whenCallGetAllServerReturnList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SshManagerControllerTest.givenNotFoundServerWhenCallSaveThenReturnNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
@@ -176,7 +165,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
       <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.SshManagerControllerTest" />
-      <option name="METHOD_NAME" value="whenCallGetAllServerReturnList" />
+      <option name="METHOD_NAME" value="givenNotFoundServerWhenCallSaveThenReturnNotFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SshManagerControllerTest.givenServerExitWhenCallEditThenReturnBadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="health-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spc.healthmaster.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.SshManagerControllerTest" />
+      <option name="METHOD_NAME" value="givenServerExitWhenCallEditThenReturnBadRequest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -191,11 +196,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SshManagerControllerTest.whenCallGetAllServerReturnList" />
-        <item itemvalue="JUnit.SshManagerControllerTest.whenCallGetAllServerReturnEmpty" />
-        <item itemvalue="Application.HealthMasterApplication" />
-        <item itemvalue="JUnit.SshManagerControllerTest.givenIdWhenCallDeleteThenOk" />
         <item itemvalue="JUnit.SshManagerControllerTest" />
+        <item itemvalue="JUnit.SshManagerControllerTest.givenConnectionShhInvalidWhenCallEditThenReturnBadGateway" />
+        <item itemvalue="JUnit.SshManagerControllerTest.givenServerExitWhenCallEditThenReturnBadRequest" />
+        <item itemvalue="JUnit.SshManagerControllerTest.givenNotFoundServerWhenCallSaveThenReturnNotFound" />
+        <item itemvalue="JUnit.SshManagerControllerTest.givenInvalidBodyWhenCallEditThenReturnBadRequest" />
       </list>
     </recent_temporary>
   </component>
@@ -279,7 +284,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685832059192</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Agregand test a la clase controller de sshmanager&#10;, al request deletebyUdId">
+      <created>1685879732524</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1685879732525</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Agregand test a la clase controller de sshmanager&#10;, al request save">
+      <created>1685882267706</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1685882267706</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +325,8 @@
     <MESSAGE value="Agregando documentacion de diagramas" />
     <MESSAGE value="Agregando SshManagerService Y Sus respectivos test" />
     <MESSAGE value="Agregand test a la clase controller de sshmanager&#10;, al request deletebyUdId" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregand test a la clase controller de sshmanager&#10;, al request deletebyUdId" />
+    <MESSAGE value="Agregand test a la clase controller de sshmanager&#10;, al request save" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregand test a la clase controller de sshmanager&#10;, al request save" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="VgoProject">
@@ -421,6 +441,21 @@
             <option name="lambda-ordinal" value="-1" />
           </properties>
           <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/SshManagerController.java</url>
+          <line>44</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="52" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandRestController.java</url>
