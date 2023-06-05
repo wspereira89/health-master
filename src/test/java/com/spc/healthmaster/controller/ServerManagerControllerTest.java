@@ -3,8 +3,9 @@ package com.spc.healthmaster.controller;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spc.healthmaster.dtos.error.ApiErrorDto;
-import com.spc.healthmaster.dtos.request.RequestResponseSshManagerDto;
-import com.spc.healthmaster.services.ssh.SshManagerService;
+import com.spc.healthmaster.dtos.request.RequestResponseServerManagerDto;
+import com.spc.healthmaster.enums.TypeStrategy;
+import com.spc.healthmaster.services.server.ServerManagerService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -36,23 +37,31 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class SshManagerControllerTest {
+public class ServerManagerControllerTest {
 
-    private static final String DELETE_PATH = "/sshConnection/id/{id}";
-    private static final String PATH_BASE = "/sshConnection";
+    private static final String GET_DELETE_PATH = "/server/id/{id}";
+    private static final String PATH_BASE = "/server";
     private static final Long id = 0L;
+    private static final Long sshManagerId =1l;
+
+    private  final ApiErrorDto FAILED_CONVERT = METHOD_ARGUMENT_NOT_VALID.withCause("convert", "Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"a\"");
     private static final String VALID_BODY ="{\n" +
-            "   \"user\":\"usprocessos\",\n" +
-            "   \"host\":\"10.18.100.32\",\n" +
+            "   \"typeStrategy\":\"GLASSFISH_SERVER\",\n" +
+            "   \"serverManagerName\":\"10.18.100.32\",\n" +
+            "   \"username\":\"xxxxx\",\n" +
             "   \"password\":\"xxxxx\",\n" +
-            "   \"serverName\":\"server desconocido\"\n" +
+            "   \"port\":\"xxxxx\",\n" +
+            "   \"ssManagerId\":1\n" +
             "}";
+
     private static final String EDIT_VALID_BODY ="{\n" +
-            "   \"id\":1,\n" +
-            "   \"user\":\"usprocessos\",\n" +
-            "   \"host\":\"10.18.100.32\",\n" +
+            "   \"typeStrategy\":\"GLASSFISH_SERVER\",\n" +
+            "   \"serverManagerName\":\"10.18.100.32\",\n" +
+            "   \"username\":\"xxxxx\",\n" +
             "   \"password\":\"xxxxx\",\n" +
-            "   \"serverName\":\"server desconocido\"\n" +
+            "   \"port\":\"xxxxx\",\n" +
+            "   \"ssManagerId\":1,\n" +
+            "   \"id\":1\n" +
             "}";
 
     @Autowired
@@ -61,7 +70,7 @@ public class SshManagerControllerTest {
     private MockMvc mockMvc;
 
     @MockBean
-    private SshManagerService sshManagerService;
+    private ServerManagerService serverManagerService;
 
     @BeforeEach
     public void setup() {
@@ -70,21 +79,19 @@ public class SshManagerControllerTest {
 
     @Test
     public void givenTexIdInvalidWhenCallDeleteThenBadRequest() throws Exception {
-        final ApiErrorDto apiErrorDto = METHOD_ARGUMENT_NOT_VALID.withCause("convert", "Failed to convert value of type 'java.lang.String' to required type 'java.lang.Long'; nested exception is java.lang.NumberFormatException: For input string: \"a\"");
-
-        mockMvc.perform(delete(DELETE_PATH, "a"))
+         mockMvc.perform(delete(GET_DELETE_PATH, "a"))
                 .andExpect(status().isBadRequest())
                 .andExpect(result -> {
                     String response = result.getResponse().getContentAsString();
-                    assertEquals(apiErrorDto,  stringToApiError(response));
+                    assertEquals(FAILED_CONVERT,  stringToApiError(response));
                 });
     }
 
     @Test
     public void givenIdAnNotFoundInDatabaseWhenCallDeleteThenReturnServerError() throws Exception {
         final ApiErrorDto apiErrorDto = jpaException("");
-        doThrow(apiErrorDto.toException()).when(sshManagerService).delete(id);
-        mockMvc.perform(delete(DELETE_PATH, id))
+        doThrow(apiErrorDto.toException()).when(serverManagerService).delete(id);
+        mockMvc.perform(delete(GET_DELETE_PATH, id))
                 .andExpect(status().is5xxServerError())
                 .andExpect(result -> {
                     String response = result.getResponse().getContentAsString();
@@ -93,16 +100,19 @@ public class SshManagerControllerTest {
     }
 
     @Test
-    public void givenIdWhenCallDeleteThenOk() throws Exception {
-        doNothing().when(sshManagerService).delete(id);
-        mockMvc.perform(delete(DELETE_PATH, id))
-                .andExpect(status().isOk());
+    public void givenTexIdInvalidWhenCallListThenBadRequest() throws Exception {
+        mockMvc.perform(get(GET_DELETE_PATH, "a"))
+                .andExpect(status().isBadRequest())
+                .andExpect(result -> {
+                    String response = result.getResponse().getContentAsString();
+                    assertEquals(FAILED_CONVERT,  stringToApiError(response));
+                });
     }
 
     @Test
     public void whenCallGetAllServerReturnEmpty() throws Exception {
-        when(sshManagerService.findAll()).thenReturn(Collections.emptyList());
-        mockMvc.perform(get("/server"))
+        when(serverManagerService.findServerManagerBySshManagerId(any())).thenReturn(Collections.emptyList());
+        mockMvc.perform(get(GET_DELETE_PATH, 1l))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$.length()").value(0));
@@ -110,29 +120,28 @@ public class SshManagerControllerTest {
 
     @Test
     public void whenCallGetAllServerReturnList() throws Exception {
-        final List<RequestResponseSshManagerDto> mockSshManagers = Arrays.asList(
-                new RequestResponseSshManagerDto("Server1", 1l, "Host1", "User1", "passwrd"),
-                new RequestResponseSshManagerDto("Server2", 2l, "Host2", "User2", "passwrd")
+        final List<RequestResponseServerManagerDto> mockSshManagers = Arrays.asList(
+                new RequestResponseServerManagerDto( 1l, TypeStrategy.GLASSFISH_APP, "Host1", "User1", "passwrd","" ,sshManagerId),
+                new RequestResponseServerManagerDto( 2l,TypeStrategy.GLASSFISH_SERVER, "Host2", "User2", "passwrd", "", sshManagerId)
         );
-        when(sshManagerService.findAll()).thenReturn(mockSshManagers);
-        final MvcResult result =  mockMvc.perform(get("/server"))
+        when(serverManagerService.findServerManagerBySshManagerId(any())).thenReturn(mockSshManagers);
+        final MvcResult result =  mockMvc.perform(get(GET_DELETE_PATH, 1l))
                 .andExpect(status().isOk())
                 .andReturn();
 
         final String responseBody = result.getResponse().getContentAsString();
-        final List<RequestResponseSshManagerDto> responseDtoList = new ObjectMapper().readValue(responseBody, new TypeReference<List<RequestResponseSshManagerDto>>() {});
+        final List<RequestResponseServerManagerDto> responseDtoList = new ObjectMapper().readValue(responseBody, new TypeReference<List<RequestResponseServerManagerDto>>() {});
 
         // Realizar las aserciones sobre la lista de objetos
         assertEquals(2, responseDtoList.size());
-        assertEquals("Server1", responseDtoList.get(0).getServerName());
-        assertEquals("Host1", responseDtoList.get(0).getHost());
-        assertEquals("User1", responseDtoList.get(0).getUser());
-        assertEquals("Server2", responseDtoList.get(1).getServerName());
-        assertEquals("Host2", responseDtoList.get(1).getHost());
-        assertEquals("User2", responseDtoList.get(1).getUser());
-
-        // Verificar que el método del servicio se haya llamado una vez
-        verify(sshManagerService, times(1)).findAll();
+        assertEquals(TypeStrategy.GLASSFISH_APP, responseDtoList.get(0).getTypeStrategy());
+        assertEquals("Host1", responseDtoList.get(0).getServerManagerName());
+        assertEquals("User1", responseDtoList.get(0).getUsername());
+        assertEquals("passwrd", responseDtoList.get(0).getPassword());
+        assertEquals(TypeStrategy.GLASSFISH_SERVER, responseDtoList.get(1).getTypeStrategy());
+        assertEquals("Host2", responseDtoList.get(1).getServerManagerName());
+        assertEquals("User2", responseDtoList.get(1).getUsername());
+        assertEquals("passwrd", responseDtoList.get(1).getPassword());
     }
 
     @ParameterizedTest
@@ -152,8 +161,8 @@ public class SshManagerControllerTest {
 
     @Test
     public void givenAlreadyExistServerWhenCallSaveThenReturnBadRequest() throws Exception {
-        final ApiErrorDto apiErrorDto = alreadyExistSshManager("");
-        doThrow(apiErrorDto.toException()).when(sshManagerService).save(any());
+        final ApiErrorDto apiErrorDto = alreadyExistServerManager("");
+        doThrow(apiErrorDto.toException()).when(serverManagerService).save(any());
         mockMvc
                 .perform(post(PATH_BASE)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -166,15 +175,14 @@ public class SshManagerControllerTest {
     }
 
     @Test
-    public void givenConnectionInvalidWhenCallSaveThenReturnBadGateway() throws Exception {
-        final ApiErrorDto apiErrorDto = sshException("usrprcess", "1018.100.30")
-                .withCause("session", "java.net.ConnectException: Connection timed out: connect");
-        doThrow(apiErrorDto.toException()).when(sshManagerService).save(any());
+    public void givenSShManagerNotFoundWhenCallSaveThenReturnNotFound() throws Exception {
+        final ApiErrorDto apiErrorDto = notFoundConnectionSsh(1l);
+        doThrow(apiErrorDto.toException()).when(serverManagerService).save(any());
         mockMvc
                 .perform(post(PATH_BASE)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(VALID_BODY))
-                .andExpect(status().isBadGateway())
+                .andExpect(status().isNotFound())
                 .andExpect(result -> {
                     String response = result.getResponse().getContentAsString();
                     assertEquals(apiErrorDto,  stringToApiError(response));
@@ -184,7 +192,7 @@ public class SshManagerControllerTest {
     @Test
     public void givenErrorDatabaseWhenCallaSaveThenReturnInternalError() throws Exception {
         final ApiErrorDto apiErrorDto = jpaException("");
-        doThrow(apiErrorDto.toException()).when(sshManagerService).save(any());
+        doThrow(apiErrorDto.toException()).when(serverManagerService).save(any());
         mockMvc
                 .perform(post(PATH_BASE)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -198,7 +206,7 @@ public class SshManagerControllerTest {
 
     @Test
     public void whenCallSaveThenOk() throws Exception {
-        doNothing().when(sshManagerService).save(any());
+        doNothing().when(serverManagerService).save(any());
         mockMvc
                 .perform(post(PATH_BASE)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -222,9 +230,24 @@ public class SshManagerControllerTest {
     }
 
     @Test
+    public void givenNotFoundServerManagerWhenCallEditThenReturnNotFound() throws Exception {
+        final ApiErrorDto apiErrorDto = notFoundServerManager(1l);
+        doThrow(apiErrorDto.toException()).when(serverManagerService).edit(any());
+        mockMvc
+                .perform(put(PATH_BASE)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(EDIT_VALID_BODY))
+                .andExpect(status().isNotFound())
+                .andExpect(result -> {
+                    String response = result.getResponse().getContentAsString();
+                    assertEquals(apiErrorDto,  stringToApiError(response));
+                });
+    }
+
+    @Test
     public void givenNotFoundSshConnectionWhenCallEditThenReturnNotFound() throws Exception {
         final ApiErrorDto apiErrorDto = notFoundConnectionSsh(1l);
-        doThrow(apiErrorDto.toException()).when(sshManagerService).edit(any());
+        doThrow(apiErrorDto.toException()).when(serverManagerService).edit(any());
         mockMvc
                 .perform(put(PATH_BASE)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -239,7 +262,7 @@ public class SshManagerControllerTest {
     @Test
     public void givenServerExitWhenCallEditThenReturnBadRequest() throws Exception {
         final ApiErrorDto apiErrorDto = alreadyExistSshManager("");
-        doThrow(apiErrorDto.toException()).when(sshManagerService).edit(any());
+        doThrow(apiErrorDto.toException()).when(serverManagerService).edit(any());
         mockMvc
                 .perform(put(PATH_BASE)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -252,25 +275,9 @@ public class SshManagerControllerTest {
     }
 
     @Test
-    public void givenConnectionShhInvalidWhenCallEditThenReturnBadGateway() throws Exception {
-        final ApiErrorDto apiErrorDto = sshException("usrprcess", "1018.100.30")
-                .withCause("session", "java.net.ConnectException: Connection timed out: connect");
-        doThrow(apiErrorDto.toException()).when(sshManagerService).edit(any());
-        mockMvc
-                .perform(put(PATH_BASE)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(EDIT_VALID_BODY))
-                .andExpect(status().isBadGateway())
-                .andExpect(result -> {
-                    String response = result.getResponse().getContentAsString();
-                    assertEquals(apiErrorDto,  stringToApiError(response));
-                });
-    }
-
-    @Test
     public void givenErrorDatabaseWhenCallaEditThenReturnInternalError() throws Exception {
         final ApiErrorDto apiErrorDto = jpaException("");
-        doThrow(apiErrorDto.toException()).when(sshManagerService).edit(any());
+        doThrow(apiErrorDto.toException()).when(serverManagerService).edit(any());
         mockMvc
                 .perform(put(PATH_BASE)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -284,7 +291,7 @@ public class SshManagerControllerTest {
 
     @Test
     public void whenCallEditThenOk() throws Exception {
-        doNothing().when(sshManagerService).edit(any());
+        doNothing().when(serverManagerService).edit(any());
         mockMvc
                 .perform(put(PATH_BASE)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -292,35 +299,41 @@ public class SshManagerControllerTest {
                 .andExpect(status().isOk());
     }
 
-
-
     private static Stream<Arguments> badBodyAndResponseErrorCodeEdit() {
         return Stream.of(
                 Arguments.of("", "/bad_request/deserialization_error_unknown.json"),
-                Arguments.of("{}", "/bad_request/sshConection/argument_not_valid.json"),
-                Arguments.of("{\"id\":1}", "/bad_request/sshConection/argument_not_valid.json"),
-                Arguments.of("{\n \"id\":null,\n \"user\":null,\n \"host\":null,\n \"password\":null,\n \"serverName\":null\n }", "/bad_request/sshConection/argument_not_valid.json"),
+                Arguments.of("{}", "/bad_request/server/argument_not_valid.json"),
                 Arguments.of("{\n" +
-                        "   \"user\":\"usprocessos\",\n" +
-                        "   \"host\":\"10.18.100.32\",\n" +
-                        "   \"password\":\"xxxxx\",\n" +
-                        "   \"serverName\":\"server desconocido\"\n" +
-                        "}", "/bad_request/sshConection/argument_not_valid_id.json"),
+                        "    \"typeStrategy\": null,\n" +
+                        "    \"serverManagerName\":null,\n" +
+                        "    \"username\":null,\n" +
+                        "    \"password\":null,\n" +
+                        "    \"port\":null,\n" +
+                        "    \"ssManagerId\":null\n" +
+                        "}", "/bad_request/server/argument_not_valid.json"),
                 Arguments.of("{\n" +
                         "   \"id\":\"x\",\n" +
-                        "   \"user\":\"usprocessos\",\n" +
-                        "   \"host\":\"10.18.100.32\",\n" +
-                        "   \"password\":\"xxxxx\",\n" +
-                        "   \"serverName\":\"server desconocido\"\n" +
-                        "}", "/bad_request/sshConection/deserialization_error_unknown_id.json")
+                        "    \"typeStrategy\": null,\n" +
+                        "    \"serverManagerName\":null,\n" +
+                        "    \"username\":null,\n" +
+                        "    \"password\":null,\n" +
+                        "    \"port\":null,\n" +
+                        "    \"ssManagerId\":null\n" +
+                        "}", "/bad_request/server/deserialization_error_unknown_id.json")
         );
     }
-
     private static Stream<Arguments> badBodyAndResponseErrorCode() {
         return Stream.of(
-                Arguments.of("", "/bad_request/deserialization_error_unknown.json"),
-                Arguments.of("{}", "/bad_request/sshConection/argument_not_valid.json"),
-                Arguments.of("{\n \"user\":null,\n \"host\":null,\n \"password\":null,\n \"serverName\":null\n }", "/bad_request/sshConection/argument_not_valid.json")
+               Arguments.of("", "/bad_request/deserialization_error_unknown.json"),
+                Arguments.of("{}", "/bad_request/server/argument_not_valid.json"),
+                Arguments.of("{\n" +
+                        "    \"typeStrategy\": null,\n" +
+                        "    \"serverManagerName\":null,\n" +
+                        "    \"username\":null,\n" +
+                        "    \"password\":null,\n" +
+                        "    \"port\":null,\n" +
+                        "    \"ssManagerId\":null\n" +
+                        "}", "/bad_request/server/argument_not_valid.json")
         );
     }
 }

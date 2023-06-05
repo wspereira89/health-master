@@ -4,61 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfe3893f-5276-4a6a-8881-3701e5ed86d4" name="Changes" comment="Agregando LogAspect para capturar todos los request y LoggingResponseBodyAdvice para poder logear todas las peticiones y respuestas">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/ServerManagerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/request/RequestResponseServerManagerDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/server/ServerManagerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/server/ServerManagerServiceImpl.java" afterDir="false" />
+    <list default="true" id="dfe3893f-5276-4a6a-8881-3701e5ed86d4" name="Changes" comment="Agregando test de ServerManagerServiceTest">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/ServerManagerControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/bad_request/sshConection/argument_not_valid.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/bad_request/sshConection/deserialization_error_unknown_id.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bdTest.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/bdTest.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bdTest.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/bdTest.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/CommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/CommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/DownloadCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/DownloadCommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/LogCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/LogCommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StartCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StartCommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StatusCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StatusCommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StopCommandAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/command/StopCommandAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/SwaggerServerdResponseConstants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/SwaggerServerdResponseConstants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/MaintenanceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/MaintenanceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/SshManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/SshManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/ApiErrorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/error/ApiErrorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/CauseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/error/CauseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/CommandRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/request/CommandRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/FileDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/request/response/FileDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/MaintenanceRequestDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/request/MaintenanceRequestDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/RequestServerDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/request/RequestResponseSshManagerDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/ResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/request/response/ResponseDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/SSHManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/SSHManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/ServerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/ServerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MaintenanceEventListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/event/MaintenanceEventListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/ApiException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/ApiException.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/DefaultExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/DefaultExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/exception/advice/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/factories/ApiErrorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/factories/ApiErrorFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/log/LoggingResponseBodyAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/log/LoggingResponseBodyAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/SSHManagerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/SSHManagerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/ServerManagerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/ServerManagerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/commands/CommandService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/commands/CommandService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/commands/CommandServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/commands/CommandServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/maintenance/MaintenanceService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/maintenance/MaintenanceService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/maintenance/MaintenanceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/maintenance/MaintenanceServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/ssh/SshManagerServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/ActivemQCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/ActivemQCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/BaseCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/BaseCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/CommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/CommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/GlassfishAppCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/GlassfishAppCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/GlassfishServerCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/GlassfishServerCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/MongoDBCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/MongoDBCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/SpringBootCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/SpringBootCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/TomcatAppCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/TomcatAppCommandStrategy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/TomcatServerCommandStrategy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/strategy/TomcatServerCommandStrategy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/ServerManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/ServerManagerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/server/ServerManagerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/server/ServerManagerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/server/ServerManagerServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/server/ServerManagerServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/CommandControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/CommandControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/SshManagerControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/SshManagerControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/CommandServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/CommandServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/SshManagerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/SshManagerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/ServerManagerServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/ServerManagerServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/util/JsonLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/util/JsonLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/bad_request/server/argument_not_valid.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/bad_request/server/argument_not_valid.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/bad_request/server/argument_not_valid_id.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/bad_request/sshConection/argument_not_valid_id.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/bad_request/server/deserialization_error_unknown_id.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/bad_request/server/deserialization_error_unknown_id.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/bad_request/server/ssh_conection_error.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/bad_request/sshConection/ssh_conection_error.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,21 +116,8 @@
       <recent name="com.spc.healthmaster.command" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.HealthMasterApplication">
-    <configuration name="HealthMasterApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.HealthMasterApplication" />
-      <module name="health-master" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.spc.healthmaster.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SshManagerControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ServerManagerControllerTest">
+    <configuration name="ServerManagerControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
@@ -176,13 +126,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.SshManagerControllerTest" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.ServerManagerControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SshManagerControllerTest.givenConnectionShhInvalidWhenCallEditThenReturnBadGateway" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerManagerControllerTest.givenAlreadyExistServerWhenCallSaveThenReturnBadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
@@ -191,33 +141,57 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.SshManagerControllerTest" />
-      <option name="METHOD_NAME" value="givenConnectionShhInvalidWhenCallEditThenReturnBadGateway" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.ServerManagerControllerTest" />
+      <option name="METHOD_NAME" value="givenAlreadyExistServerWhenCallSaveThenReturnBadRequest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SshManagerServiceTest.whenCallGetListShhManagerThenReturnList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerManagerControllerTest.givenInvalidBodyWhenCallEditThenReturnBadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spc.healthmaster.service.*" />
+          <option name="PATTERN" value="com.spc.healthmaster.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spc.healthmaster.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.service.SshManagerServiceTest" />
-      <option name="METHOD_NAME" value="whenCallGetListShhManagerThenReturnList" />
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.ServerManagerControllerTest" />
+      <option name="METHOD_NAME" value="givenInvalidBodyWhenCallEditThenReturnBadRequest(java.lang.String,java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="java in health-master" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServerManagerControllerTest.givenInvalidBodyWhenCallSaveThenReturnBadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
-      <option name="TEST_OBJECT" value="directory" />
-      <dir value="$PROJECT_DIR$/src/test/java" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spc.healthmaster.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.ServerManagerControllerTest" />
+      <option name="METHOD_NAME" value="givenInvalidBodyWhenCallSaveThenReturnBadRequest(java.lang.String,java.lang.String)" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServerManagerControllerTest.givenSShManagerNotFoundWhenCallSaveThenReturnNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="health-master" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.spc.healthmaster.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.ServerManagerControllerTest" />
+      <option name="METHOD_NAME" value="givenSShManagerNotFoundWhenCallSaveThenReturnNotFound" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -231,11 +205,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.HealthMasterApplication" />
-        <item itemvalue="JUnit.java in health-master" />
-        <item itemvalue="JUnit.SshManagerServiceTest.whenCallGetListShhManagerThenReturnList" />
-        <item itemvalue="JUnit.SshManagerControllerTest" />
-        <item itemvalue="JUnit.SshManagerControllerTest.givenConnectionShhInvalidWhenCallEditThenReturnBadGateway" />
+        <item itemvalue="JUnit.ServerManagerControllerTest" />
+        <item itemvalue="JUnit.ServerManagerControllerTest.givenInvalidBodyWhenCallEditThenReturnBadRequest" />
+        <item itemvalue="JUnit.ServerManagerControllerTest.givenSShManagerNotFoundWhenCallSaveThenReturnNotFound" />
+        <item itemvalue="JUnit.ServerManagerControllerTest.givenInvalidBodyWhenCallSaveThenReturnBadRequest" />
+        <item itemvalue="JUnit.ServerManagerControllerTest.givenAlreadyExistServerWhenCallSaveThenReturnBadRequest" />
       </list>
     </recent_temporary>
   </component>
@@ -354,7 +328,21 @@
       <option name="project" value="LOCAL" />
       <updated>1685898164292</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Agregando restcontroller para crear server, servicios y repository">
+      <created>1685912920199</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1685912920199</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Agregando test de ServerManagerServiceTest">
+      <created>1685921682903</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1685921682903</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -385,7 +373,9 @@
     <MESSAGE value="Agregand test a la clase controller de sshmanager&#10;, al request edit" />
     <MESSAGE value="Agregando documentación swaagger" />
     <MESSAGE value="Agregando LogAspect para capturar todos los request y LoggingResponseBodyAdvice para poder logear todas las peticiones y respuestas" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregando LogAspect para capturar todos los request y LoggingResponseBodyAdvice para poder logear todas las peticiones y respuestas" />
+    <MESSAGE value="Agregando restcontroller para crear server, servicios y repository" />
+    <MESSAGE value="Agregando test de ServerManagerServiceTest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando test de ServerManagerServiceTest" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="VgoProject">
@@ -452,7 +442,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/CommandControllerTest.java</url>
-          <line>119</line>
+          <line>114</line>
           <option name="timeStamp" value="38" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -462,7 +452,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/CommandControllerTest.java</url>
-          <line>93</line>
+          <line>88</line>
           <option name="timeStamp" value="40" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -516,6 +506,37 @@
           <line>59</line>
           <option name="timeStamp" value="53" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/ServerManagerServiceTest.java</url>
+          <line>128</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/ServerManagerServiceTest.java</url>
+          <line>182</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/server/ServerManagerServiceImpl.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/ServerManagerServiceTest.java</url>
+          <line>148</line>
+          <properties>
+            <option name="lambda-ordinal" value="-1" />
+          </properties>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/ServerManagerControllerTest.java</url>
+          <line>163</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandRestController.java</url>
           <line>47</line>
@@ -533,6 +554,14 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/ServerManagerController.java</url>
+          <line>50</line>
+          <properties class="com.spc.healthmaster.controller.ServerManagerController" method="save">
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="61" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

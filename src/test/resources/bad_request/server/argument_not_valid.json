@@ -4,20 +4,28 @@
   "status": 400,
   "causes": [
     {
-      "code": "user",
-      "description": "Invalid  user"
+      "code": "typeStrategy",
+      "description": "Invalid typeStrategy value, Must be one of [TOMCAT_SERVER, GLASSFISH_SERVER, GLASSFISH_APP, TOMCAT_APP]"
     },
     {
-      "code": "host",
-      "description": "Invalid Host"
+      "code": "serverManagerName",
+      "description": "Invalid serverManagerName"
+    },
+    {
+      "code": "username",
+      "description": "Invalid username"
     },
     {
       "code": "password",
-      "description": "Invalid passwrod"
+      "description": "Invalid password"
     },
     {
-      "code": "serverName",
-      "description": "Invalid  server Name"
+      "code": "port",
+      "description": "Invalid port"
+    },
+    {
+      "code": "ssManagerId",
+      "description": "Invalid ssManagerId"
     }
   ]
 }

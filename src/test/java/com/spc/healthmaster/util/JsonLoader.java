@@ -1,6 +1,8 @@
 package com.spc.healthmaster.util;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.spc.healthmaster.dtos.error.ApiErrorDto;
 import lombok.experimental.UtilityClass;
 
 import java.io.IOException;
@@ -17,5 +19,10 @@ public class JsonLoader {
 
         // Cargar el objeto desde el archivo JSON
         return objectMapper.readValue(inputStream, objectType);
+    }
+
+    public static  ApiErrorDto stringToApiError(final String errorAsString) throws JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.readValue(errorAsString, ApiErrorDto.class);
     }
 }

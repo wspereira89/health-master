@@ -28,7 +28,7 @@ public class ServerManagerServiceImpl implements ServerManagerService {
     }
 
     @Override
-    public List<RequestResponseServerManagerDto> findBySshManagerId(final Long sshManagerId) {
+    public List<RequestResponseServerManagerDto> findServerManagerBySshManagerId(final Long sshManagerId) {
 
         return this.serverManagerRepository.findAllBySshManagerId(sshManagerId)
                 .stream()

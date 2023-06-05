@@ -1,7 +1,5 @@
 package com.spc.healthmaster.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spc.healthmaster.dtos.error.ApiErrorDto;
 import com.spc.healthmaster.dtos.request.CommandRequestDto;
 import com.spc.healthmaster.dtos.request.response.ResponseDto;
@@ -25,6 +23,7 @@ import java.util.stream.Stream;
 
 import static com.spc.healthmaster.factories.ApiErrorFactory.*;
 import static com.spc.healthmaster.util.JsonLoader.loadObject;
+import static com.spc.healthmaster.util.JsonLoader.stringToApiError;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
@@ -68,10 +67,6 @@ public class CommandControllerTest {
                 });
     }
 
-    private ApiErrorDto stringToApiError(final String errorAsString) throws JsonProcessingException {
-        final ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(errorAsString, ApiErrorDto.class);
-    }
 
     private static Stream<Arguments> badBodyAndResponseErrorCode() {
         return Stream.of(

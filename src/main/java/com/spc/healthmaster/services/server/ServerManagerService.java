@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ServerManagerService {
 
-    List<RequestResponseServerManagerDto> findBySshManagerId(Long sshManagerId);
+    List<RequestResponseServerManagerDto> findServerManagerBySshManagerId(Long sshManagerId);
     void delete(Long id) throws ApiException;
     void save(RequestResponseServerManagerDto request) throws ApiException;
     void edit(RequestResponseServerManagerDto request) throws ApiException;

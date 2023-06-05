@@ -48,14 +48,14 @@ public class ServerManagerServiceTest {
     public void whenCallFindBySshManagerIdThenReturnList() {
         final List<ServerManager> sshManagers = Arrays.asList(mock(ServerManager.class), mock(ServerManager.class));
         when(serverManagerRepository.findAllBySshManagerId(sshManagerId)).thenReturn(sshManagers);
-        final List<RequestResponseServerManagerDto> result = serverManagerService.findBySshManagerId(sshManagerId);
+        final List<RequestResponseServerManagerDto> result = serverManagerService.findServerManagerBySshManagerId(sshManagerId);
         assertEquals(2, result.size());
     }
 
     @Test
     public void whenCallFindBySshManagerIdThenReturnEmpty(){
         when(serverManagerRepository.findAllBySshManagerId(1l)).thenReturn(Collections.emptyList());
-        final List<RequestResponseServerManagerDto> result =  serverManagerService.findBySshManagerId(sshManagerId);
+        final List<RequestResponseServerManagerDto> result =  serverManagerService.findServerManagerBySshManagerId(sshManagerId);
         assertTrue(result.isEmpty());
     }
 
@@ -143,6 +143,7 @@ public class ServerManagerServiceTest {
     public void givenServerManagerNotExistSshConnectionWhenEditThenApiException()  {
         final RequestResponseServerManagerDto request = mock(RequestResponseServerManagerDto.class);
         when(request.getId()).thenReturn(serverManagerId);
+        when(request.getSsManagerId()).thenReturn(sshManagerId);
         when(serverManagerRepository.findById(serverManagerId)).thenReturn(Optional.of(mock(ServerManager.class)));
         when(sshManagerRepository.findById(sshManagerId)).thenReturn(Optional.empty());
         final ApiException exception = assertThrows(ApiException.class,()-> serverManagerService.edit(request));

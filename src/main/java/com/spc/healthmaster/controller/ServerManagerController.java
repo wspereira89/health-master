@@ -30,8 +30,8 @@ public class ServerManagerController {
 
     @GetMapping("/id/{id}")
     @Operation(summary = "Obtiene la lista de servidores que estan registrados en la BD")
-    public ResponseEntity<List<RequestResponseServerManagerDto>> findAllBySshManagerId(final @PathVariable Long sshManagerId) {
-        return ResponseEntity.ok(serverManagerService.findBySshManagerId(sshManagerId));
+    public ResponseEntity<List<RequestResponseServerManagerDto>> findAllBySshManagerId(final @Valid @PathVariable("id")  Long sshManagerId) {
+        return ResponseEntity.ok(serverManagerService.findServerManagerBySshManagerId(sshManagerId));
     }
 
     @DeleteMapping("/id/{id}")
