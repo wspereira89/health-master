@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
-import static com.spc.healthmaster.constants.SwaggerServerdResponseConstants.*;
+import static com.spc.healthmaster.constants.swagger.GeneralConstant.*;
+import static com.spc.healthmaster.constants.swagger.SshManagerResponseConstants.*;
 import static com.spc.healthmaster.factories.ApiErrorFactory.METHOD_ARGUMENT_NOT_VALID;
 
 @RestController
@@ -43,8 +44,8 @@ public class SshManagerController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success"),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(examples = {
-                    @ExampleObject(name = "Internal server error", value = SERVER_ERROR_500),
-                    @ExampleObject(name = "Error BD", value = SERVER_ERROR_500_BD)
+                    @ExampleObject(name = "Internal server error", value = ERROR_500_INTERNAL_SERVER),
+                    @ExampleObject(name = "Error BD", value = ERROR_500_BD)
             }))
     })
     public void deleteById(@Valid @PathVariable("id") Long id) throws ApiException {
@@ -54,15 +55,15 @@ public class SshManagerController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success"),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content(schema = @Schema(implementation = ApiErrorDto.class), examples = {
-                    @ExampleObject(name = "Arguments not valid", value = SERVER_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID),
-                    @ExampleObject(name = "already exist sshManager ", value = SERVER_ERROR_400_ALREADY_EXIST_SSHMANAGER)
+                    @ExampleObject(name = "Arguments not valid", value = SSHMANAGER_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID),
+                    @ExampleObject(name = "already exist sshManager ", value = ERROR_400_ALREADY_EXIST_SSHMANAGER)
             })),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(examples = {
-                    @ExampleObject(name = "Internal server error", value = SERVER_ERROR_500),
-                    @ExampleObject(name = "Error BD", value = SERVER_ERROR_500_BD)
+                    @ExampleObject(name = "Internal server error", value = ERROR_500_INTERNAL_SERVER),
+                    @ExampleObject(name = "Error BD", value = ERROR_500_BD)
             })),
             @ApiResponse(responseCode = "502", description = "Bad request", content = @Content(schema = @Schema(implementation = ApiErrorDto.class), examples = {
-                    @ExampleObject(name = "ssh_connection", value = SERVER_ERROR_502_CONNECTION_SSH)
+                    @ExampleObject(name = "ssh_connection", value = SSHMANAGER_ERROR_502_CONNECTION_SSH)
             }))
     })
     @PostMapping()
@@ -71,7 +72,7 @@ public class SshManagerController {
                     mediaType = MediaType.APPLICATION_JSON_VALUE,
                     examples = {
                             @ExampleObject(value = "{\"serverName\":\"Dev - processos\",  \"host\":\"10.18.100.30\", \"user\":\"usrprocesos\", \"password\":\"pass123\"}", name = "Example 1: Dev - procces",
-                                    description = "Este ejemplo te permitira Crear un servidor ")
+                                    description = "Este ejemplo te permitira Crear la configuración de una conexion ssh ")
                     }
             )
     ) RequestResponseSshManagerDto requestResponseSshManagerDto) throws ApiException {
@@ -79,24 +80,24 @@ public class SshManagerController {
     }
 
     @PutMapping()
-    @Operation(summary = "Actualiza la conexion shh en la BD")
+    @Operation(summary = "Actualiza la configuracion de conexion shh en la BD")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success"),
             @ApiResponse(responseCode = "400", description = "Bad request", content = @Content(schema = @Schema(implementation = ApiErrorDto.class), examples = {
-                    @ExampleObject(name = "Arguments not valid", value = SERVER_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID),
-                    @ExampleObject(name = "Arguments not valid Id", value = EDIT_SERVER_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID_ID),
-                    @ExampleObject(name = "Json Deserialization Unknown", value = EDIT_SERVER_ERROR_400_DESERIALIZATION_UNKNOWN),
-                    @ExampleObject(name = "already exist server ", value = SERVER_ERROR_400_ALREADY_EXIST_SSHMANAGER)
+                    @ExampleObject(name = "Arguments not valid", value = SSHMANAGER_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID),
+                    @ExampleObject(name = "Arguments not valid Id", value = EDIT_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID_ID),
+                    @ExampleObject(name = "Json Deserialization Unknown id", value = ERROR_400_DESERIALIZATION_UNKNOWN_ID),
+                    @ExampleObject(name = "already exist server ", value = ERROR_400_ALREADY_EXIST_SSHMANAGER)
             })),
             @ApiResponse(responseCode = "404", description = "Not Found", content = @Content(schema = @Schema(implementation = ApiErrorDto.class), examples = {
-                    @ExampleObject(name = "not_found_sshManager", value = EDIT_SERVER_ERROR_404_NOT_FOUND_SSHMANAGER)
+                    @ExampleObject(name = "not_found_sshManager", value = ERROR_404_NOT_FOUND_SSHMANAGER)
             })),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(examples = {
-                    @ExampleObject(name = "Internal server error", value = SERVER_ERROR_500),
-                    @ExampleObject(name = "Error BD", value = SERVER_ERROR_500_BD)
+                    @ExampleObject(name = "Internal server error", value = ERROR_500_INTERNAL_SERVER),
+                    @ExampleObject(name = "Error BD", value = ERROR_500_BD)
             })),
             @ApiResponse(responseCode = "502", description = "Bad request", content = @Content(schema = @Schema(implementation = ApiErrorDto.class), examples = {
-                    @ExampleObject(name = "ssh_connection", value = SERVER_ERROR_502_CONNECTION_SSH)
+                    @ExampleObject(name = "ssh_connection", value = SSHMANAGER_ERROR_502_CONNECTION_SSH)
             }))
     })
     public void edit(@Valid @RequestBody

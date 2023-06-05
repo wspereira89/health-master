@@ -1,9 +1,9 @@
-package com.spc.healthmaster.constants;
+package com.spc.healthmaster.constants.swagger;
 
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public final class SwaggerCommandResponseConstants {
+public final class CommandResponseConstant {
 
     public static final String COMMAND_RESPONSE_SUCCESS_RUNNING ="{\n" +
             " \"status\":\"RUNNING\",\n" +
@@ -60,10 +60,5 @@ public final class SwaggerCommandResponseConstants {
             "  ]\n" +
             "}\n";
 
-    public static final String COMMAND_ERROR_400_DESERIALIZATION_UNKNOWN = "{\n" +
-            "  \"error\":\"deserialization_error\",\n" +
-            "  \"message\":\"JSON deserialization error\",\n" +
-            "  \"status\":400,\n" +
-            "  \"causes\":[{\"code\":\"unknown\",\"description\":\"must be one of\"}]\n" +
-            "}";
+
 }

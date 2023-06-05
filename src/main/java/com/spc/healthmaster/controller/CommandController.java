@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-import static com.spc.healthmaster.constants.SwaggerRequestConstant.*;
-import static com.spc.healthmaster.constants.SwaggerCommandResponseConstants.*;
-import static com.spc.healthmaster.constants.SwaggerCommandResponseConstants.COMMAND_ERROR_400_DESERIALIZATION_UNKNOWN;
+import static com.spc.healthmaster.constants.swagger.GeneralConstant.ERROR_400_DESERIALIZATION_UNKNOWN;
+import static com.spc.healthmaster.constants.swagger.CommandResponseConstant.*;
+import static com.spc.healthmaster.constants.swagger.CommandRequestConstant.*;
 
 @RestController
 @RequestMapping("/command")
@@ -42,7 +42,7 @@ import static com.spc.healthmaster.constants.SwaggerCommandResponseConstants.COM
                 @ExampleObject(name = "Arguments not valid", value = COMMAND_RESPONSE_ERROR_400_ARGUMENTS_NOT_VALID),
                 @ExampleObject(name = "Json Deserialization command action", value = COMMAND_ERROR_400_DESERIALIZATION_COMMAND),
                 @ExampleObject(name = "Json Deserialization Type Strategy", value = COMMAND_ERROR_400_DESERIALIZATION_TYPE_STRATEGY),
-                @ExampleObject(name = "Json Deserialization Unknown", value = COMMAND_ERROR_400_DESERIALIZATION_UNKNOWN)
+                @ExampleObject(name = "Json Deserialization Unknown", value = ERROR_400_DESERIALIZATION_UNKNOWN)
         })),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(examples = {
                 @ExampleObject(value = "{\"error\":\"internal_server_error\",\"message\":\"Internal server error\",\"status\":500,\"expected\":true,\"causes\":[]}")

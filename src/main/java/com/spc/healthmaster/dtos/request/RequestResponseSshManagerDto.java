@@ -1,5 +1,6 @@
 package com.spc.healthmaster.dtos.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spc.healthmaster.dtos.SshManagerDto;
 import com.spc.healthmaster.entity.SSHManager;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,7 @@ public class RequestResponseSshManagerDto {
     private String user;
 
     @NotNull(message = "Invalid passwrod")
+    @JsonIgnore
     private String password;
 
     public SSHManager toSshManager() {

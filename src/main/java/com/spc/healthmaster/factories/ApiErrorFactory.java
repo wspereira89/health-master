@@ -43,7 +43,7 @@ public enum ApiErrorFactory {
         return  new ApiErrorDto(NOT_FOUND_ERROR_PREFIX+"server", "not found server Manager: "+ serverId, SC_NOT_FOUND);
     }
     public static ApiErrorDto alreadyExistServerManager(final String server){
-        return new ApiErrorDto(ALREADY_EXIST_SSH_MANAGER,"the serverManager [" + server + "] is already registered in the database", SC_BAD_REQUEST);
+        return new ApiErrorDto(ALREADY_EXIST_SERVER_MANAGER,"the serverManager [" + server + "] is already registered in the database", SC_BAD_REQUEST);
     }
 
     public static ApiErrorDto notFoundConnectionSsh(final Long serverId) {

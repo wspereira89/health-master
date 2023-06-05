@@ -1,9 +1,9 @@
-package com.spc.healthmaster.constants;
+package com.spc.healthmaster.constants.swagger;
 
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-public class SwaggerRequestConstant {
+public class CommandRequestConstant {
 
     public static final String COMMAND_DESRIPTION_REQUEST ="A continuación se listan los ejemplos de los casos validos de como se tienen que enviar la información.\n" +
             " los command Validos son: [START, STOP, STATUS, LOG, DOWNLOAD] \n" +

@@ -11,9 +11,7 @@ public class TypeStrategyValidator implements ConstraintValidator<ValidTypeStrat
 
     private final List<TypeStrategy> acceptedValues = ImmutableList.of(
             TypeStrategy.TOMCAT_SERVER,
-            TypeStrategy.GLASSFISH_SERVER,
-            TypeStrategy.GLASSFISH_APP,
-            TypeStrategy.TOMCAT_APP
+            TypeStrategy.GLASSFISH_SERVER
     );
 
     @Override

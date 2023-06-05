@@ -1,5 +1,6 @@
 package com.spc.healthmaster.dtos.request;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.spc.healthmaster.constrain.ValidTypeStrategy;
 import com.spc.healthmaster.entity.SSHManager;
 import com.spc.healthmaster.entity.ServerManager;
@@ -26,6 +27,7 @@ public class RequestResponseServerManagerDto {
     private String username;
 
     @NotNull(message = "Invalid password")
+    @JsonIgnore
     private String password;
     @NotNull(message = "Invalid port")
     private String port;
