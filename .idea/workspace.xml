@@ -4,19 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="dfe3893f-5276-4a6a-8881-3701e5ed86d4" name="Changes" comment="Agregando documentacion de ServerManagerController">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/request/ApplicationRequestResponseDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/application/ApplicationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/application/ApplicationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/service/ApplicationServiceTest.java" afterDir="false" />
+    <list default="true" id="dfe3893f-5276-4a6a-8881-3701e5ed86d4" name="Changes" comment="Agregando Controller de application y sus test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/swagger/ApplicationResponseConstant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/ApplicationControllerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/bad_request/application/argument_not_valid.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/resources/bad_request/application/deserialization_error_unknown_id.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bdTest.mv.db" beforeDir="false" afterPath="$PROJECT_DIR$/bdTest.mv.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bdTest.trace.db" beforeDir="false" afterPath="$PROJECT_DIR$/bdTest.trace.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/constants/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/entity/Application.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/factories/ApiErrorFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/factories/ApiErrorFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/ApplicationRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/repository/ApplicationRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/bad_request/server/argument_not_valid.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/bad_request/server/argument_not_valid.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/ApplicationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/ApplicationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/request/ApplicationRequestResponseDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/dtos/request/ApplicationRequestResponseDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/application/ApplicationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/spc/healthmaster/services/application/ApplicationServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +87,7 @@
     "SONARLINT_PRECOMMIT_ANALYSIS": "true",
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "C:/Users/MELISSA MIRANDA}/OneDrive/Documentos/health-master/src/test/resources/bad_request/server",
+    "last_opened_file_path": "C:/Users/MELISSA MIRANDA}/OneDrive/Documentos/health-master/src/test/resources/bad_request/application",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.2",
@@ -98,6 +96,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\MELISSA MIRANDA}\OneDrive\Documentos\health-master\src\test\resources\bad_request\application" />
       <recent name="C:\Users\MELISSA MIRANDA}\OneDrive\Documentos\health-master\src\test\resources\bad_request\server" />
       <recent name="C:\Users\MELISSA MIRANDA}\OneDrive\Documentos\health-master\src\test\resources\bad_request" />
     </key>
@@ -105,88 +104,88 @@
       <recent name="C:\Users\MELISSA MIRANDA}\OneDrive\Documentos\health-master\src\test\resources\bad_request\cmmand" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.spc.healthmaster.controller" />
       <recent name="com.spc.healthmaster.service" />
       <recent name="com.spc.healthmaster.constants" />
       <recent name="com.spc.healthmaster.strategy" />
       <recent name="com.spc.healthmaster.repository" />
-      <recent name="com.spc.healthmaster.command" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ApplicationServiceTest">
-    <configuration name="ApplicationServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.ApplicationControllerTest">
+    <configuration name="ApplicationControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spc.healthmaster.service.*" />
+          <option name="PATTERN" value="com.spc.healthmaster.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spc.healthmaster.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.service.ApplicationServiceTest" />
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.ApplicationControllerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationServiceTest.WhenEditThenBadDatabaseApiException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ApplicationControllerTest.givenInvalidBodyWhenCallEditThenReturnBadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spc.healthmaster.service.*" />
+          <option name="PATTERN" value="com.spc.healthmaster.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spc.healthmaster.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.service.ApplicationServiceTest" />
-      <option name="METHOD_NAME" value="WhenEditThenBadDatabaseApiException" />
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.ApplicationControllerTest" />
+      <option name="METHOD_NAME" value="givenInvalidBodyWhenCallEditThenReturnBadRequest(java.lang.String,java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationServiceTest.givenApplicationWhenEditThenDoNothing" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ApplicationControllerTest.givenInvalidBodyWhenCallSaveThenReturnBadRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spc.healthmaster.service.*" />
+          <option name="PATTERN" value="com.spc.healthmaster.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spc.healthmaster.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.service.ApplicationServiceTest" />
-      <option name="METHOD_NAME" value="givenApplicationWhenEditThenDoNothing" />
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.ApplicationControllerTest" />
+      <option name="METHOD_NAME" value="givenInvalidBodyWhenCallSaveThenReturnBadRequest(java.lang.String,java.lang.String)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationServiceTest.givenServerManagerAndExistOtherServerManagerWhenEditThenApiException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ApplicationControllerTest.whenCallGetAllServerReturnEmpty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spc.healthmaster.service.*" />
+          <option name="PATTERN" value="com.spc.healthmaster.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spc.healthmaster.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.service.ApplicationServiceTest" />
-      <option name="METHOD_NAME" value="givenServerManagerAndExistOtherServerManagerWhenEditThenApiException" />
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.ApplicationControllerTest" />
+      <option name="METHOD_NAME" value="whenCallGetAllServerReturnEmpty(long)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApplicationServiceTest.whenTrySaveThenOk" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ApplicationControllerTest.whenCallGetAllServerReturnList" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="health-master" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.spc.healthmaster.service.*" />
+          <option name="PATTERN" value="com.spc.healthmaster.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.spc.healthmaster.service" />
-      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.service.ApplicationServiceTest" />
-      <option name="METHOD_NAME" value="whenTrySaveThenOk" />
+      <option name="PACKAGE_NAME" value="com.spc.healthmaster.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.spc.healthmaster.controller.ApplicationControllerTest" />
+      <option name="METHOD_NAME" value="whenCallGetAllServerReturnList(long)" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -201,11 +200,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ApplicationServiceTest" />
-        <item itemvalue="JUnit.ApplicationServiceTest.WhenEditThenBadDatabaseApiException" />
-        <item itemvalue="JUnit.ApplicationServiceTest.givenServerManagerAndExistOtherServerManagerWhenEditThenApiException" />
-        <item itemvalue="JUnit.ApplicationServiceTest.givenApplicationWhenEditThenDoNothing" />
-        <item itemvalue="JUnit.ApplicationServiceTest.whenTrySaveThenOk" />
+        <item itemvalue="JUnit.ApplicationControllerTest" />
+        <item itemvalue="JUnit.ApplicationControllerTest.givenInvalidBodyWhenCallEditThenReturnBadRequest" />
+        <item itemvalue="JUnit.ApplicationControllerTest.givenInvalidBodyWhenCallSaveThenReturnBadRequest" />
+        <item itemvalue="JUnit.ApplicationControllerTest.whenCallGetAllServerReturnList" />
+        <item itemvalue="JUnit.ApplicationControllerTest.whenCallGetAllServerReturnEmpty" />
       </list>
     </recent_temporary>
   </component>
@@ -352,7 +351,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685978547508</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Agregando repository y servicio de application y los test unitarios">
+      <created>1685984370748</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1685984370748</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,7 +393,9 @@
     <MESSAGE value="Agregando test de ServerManagerServiceTest" />
     <MESSAGE value="Agregando test de ServerManagerController" />
     <MESSAGE value="Agregando documentacion de ServerManagerController" />
-    <option name="LAST_COMMIT_MESSAGE" value="Agregando documentacion de ServerManagerController" />
+    <MESSAGE value="Agregando repository y servicio de application y los test unitarios" />
+    <MESSAGE value="Agregando Controller de application y sus test" />
+    <option name="LAST_COMMIT_MESSAGE" value="Agregando Controller de application y sus test" />
     <option name="GROUP_MULTIFILE_MERGE_BY_DIRECTORY" value="true" />
   </component>
   <component name="VgoProject">
@@ -549,6 +557,11 @@
           <line>163</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/ApplicationControllerTest.java</url>
+          <line>106</line>
+          <option name="timeStamp" value="64" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/com/spc/healthmaster/controller/CommandRestController.java</url>
           <line>47</line>
@@ -574,6 +587,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/com/spc/healthmaster/controller/ServerManagerControllerTest.java</url>
+          <line>90</line>
+          <properties class="com.spc.healthmaster.controller.ServerManagerControllerTest" method="givenIdAnNotFoundInDatabaseWhenCallDeleteThenReturnServerError">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="63" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -52,7 +52,9 @@ public class ApplicationServiceImpl implements ApplicationService {
             throw alreadyExistApplication(request.getApplicationName()).toException();
         }
 
-        final ServerManager serverManager = serverManagerRepository.findById(request.getServerManagerId())
+        final ServerManager serverManager = request.getServerManagerId() == 0
+                ? null
+                : serverManagerRepository.findById(request.getServerManagerId())
                 .orElseThrow(()->notFoundServerManager(request.getServerManagerId()).toException());
         modifyServerManager(request, serverManager);
     }
@@ -62,11 +64,13 @@ public class ApplicationServiceImpl implements ApplicationService {
        final Application application= applicationRepository
                .findById(request.getId())
                .orElseThrow(()->notFoundApplication(request.getId()).toException());
-        final ServerManager serverManager = serverManagerRepository.findById(request.getServerManagerId())
+        final ServerManager serverManager =  request.getServerManagerId() ==0
+                ? null
+                : serverManagerRepository.findById(request.getServerManagerId())
                 .orElseThrow(()->notFoundServerManager(request.getServerManagerId()).toException());
         final Application other = request.toApplication(serverManager);
 
-        if(other.equals(serverManager)) {
+        if(other.equals(application)) {
             return;
         }
 

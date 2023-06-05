@@ -1,0 +1,23 @@
+{
+  "error": "validation_error",
+  "message": "Arguments not valid",
+  "status": 400,
+  "causes": [
+    {
+      "code": "applicationName",
+      "description": "Invalid applicationName"
+    },
+    {
+      "code": "pathFile",
+      "description": "Invalid pathFile"
+    },
+    {
+      "code": "memory",
+      "description": "Invalid memory"
+    },
+    {
+      "code": "jmxPort",
+      "description": "Invalid jmxPort"
+    }
+  ]
+}
