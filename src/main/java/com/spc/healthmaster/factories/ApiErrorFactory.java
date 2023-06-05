@@ -42,9 +42,7 @@ public enum ApiErrorFactory {
     public static ApiErrorDto notFoundServerManager(final Long serverId) {
         return  new ApiErrorDto(NOT_FOUND_ERROR_PREFIX+"server", "not found server Manager: "+ serverId, SC_NOT_FOUND);
     }
-    public static ApiErrorDto alreadyExistServerManager(final String server){
-        return new ApiErrorDto(ALREADY_EXIST_SERVER_MANAGER,"the serverManager [" + server + "] is already registered in the database", SC_BAD_REQUEST);
-    }
+
 
     public static ApiErrorDto notFoundConnectionSsh(final Long serverId) {
         return  new ApiErrorDto(NOT_FOUND_ERROR_PREFIX+"sshManager", "not found connection ssh of serverId: "+ serverId, SC_NOT_FOUND);
@@ -56,6 +54,14 @@ public enum ApiErrorFactory {
 
     public static ApiErrorDto sshException(final String name, final String host) {
         return  new ApiErrorDto(SSH_CONNECTION_STATUS, "username :["+name+"] could not connect to host:["+host+"]",SC_BAD_GATEWAY);
+    }
+
+    public static ApiErrorDto alreadyExistApplication(final String server){
+        return new ApiErrorDto(ALREADY_EXIST_APPLICATION,"the Application [" + server + "] is already registered in the database", SC_BAD_REQUEST);
+    }
+
+    public static ApiErrorDto alreadyExistServerManager(final String server){
+        return new ApiErrorDto(ALREADY_EXIST_SERVER_MANAGER,"the serverManager [" + server + "] is already registered in the database", SC_BAD_REQUEST);
     }
 
     public static ApiErrorDto alreadyExistSshManager(final String server){
