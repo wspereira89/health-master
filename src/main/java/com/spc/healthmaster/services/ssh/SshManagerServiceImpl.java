@@ -56,7 +56,7 @@ public class SshManagerServiceImpl implements SshManagerService {
         if(existSsh) {
             throw alreadyExistSshManager(requestResponseSshManagerDto.getServerName()).toException();
         }
-       // validConnectionSsh(requestResponseSshManagerDto.toSshManagerDto());
+        validConnectionSsh(requestResponseSshManagerDto.toSshManagerDto());
         modifySshManagerMap(requestResponseSshManagerDto);
     }
 
@@ -75,7 +75,7 @@ public class SshManagerServiceImpl implements SshManagerService {
             throw alreadyExistSshManager(requestResponseSshManagerDto.getServerName()).toException();
         }
 
-       // validConnectionSsh(requestResponseSshManagerDto.toSshManagerDto());
+        validConnectionSsh(requestResponseSshManagerDto.toSshManagerDto());
         modifySshManagerMap(requestResponseSshManagerDto);
     }
 
